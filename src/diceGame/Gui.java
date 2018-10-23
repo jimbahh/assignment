@@ -1,7 +1,8 @@
 package diceGame;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
+
 
 public class Gui {
 public static void main(String args[]) {
