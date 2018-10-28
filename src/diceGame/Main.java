@@ -12,7 +12,7 @@ public class Main {
 		Player playerOne = new Player("Player 1 Test");
 		Player playerTwo = new Player("Player 2 Test");
 		
-		Game game = new Game(3, 2, playerOne, playerTwo, 300, 100);
+		Game game = new Game(3, 2, "Player 1 Test", "Player 2 Test", 300, 100);
 		game.newGame();
 		System.out.println("Winner is " + game.getWinner().getName());
 		System.out.println("p1 " + playerOne.getMoney());

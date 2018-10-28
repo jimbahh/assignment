@@ -20,17 +20,16 @@ public class Game {
 		this.bet = bet;
 	}
 	
-	public Game(int rounds, int diceNumber, Player playerOne, Player playerTwo, int money, int bet) {
+	public Game(int rounds, int diceNumber, String playerOne, String playerTwo, int money, int bet) {
 		this.rounds = rounds;
 		this.diceNumber = diceNumber;
-		this.playerOne = playerOne;
-		this.playerTwo = playerTwo;
+		this.playerOne.setName(playerOne);
+		this.playerTwo.setName(playerTwo);
 		this.playerOne.setMoney(money);
 		this.playerTwo.setMoney(money);
 		this.bet = bet;
 	}
 	
-
 	
 	public void setBet(Player winner, Player loser) {
 		winner.setMoney(bet);
@@ -69,8 +68,9 @@ public class Game {
 	}
 	
 	public void newGame() {
-		for (int i = rounds; i > 0; i--) {
-			System.out.println("Round "+i);
+		for (int i = 0; i < rounds; i++) {
+			int round = i+1;
+			System.out.println("Round "+round);
 			playerOne.roll(diceNumber);
 			playerTwo.roll(diceNumber);
 		}

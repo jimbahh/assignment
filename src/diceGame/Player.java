@@ -12,9 +12,14 @@ public class Player {
 		this.money = 0;
 	}
 	
+	
 	public Player(String name, int money) {
 		this.name = name;
 		this.money = money;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public void setMoney(int money) {
