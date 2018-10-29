@@ -16,14 +16,14 @@ import javax.swing.JPanel;
 public class WindowGUI {
 
 	private JFrame frame;
-	private JTextField txtPlayer;
-	private JTextField txtPlayer_1;
+	private JTextField txtPlayerOneName;
+	private JTextField txtPlayerTwoName;
 	private JTextField txtStartingFunds;
 	private final JButton btnStart = new JButton("Start");
 	
 	private static String[] diceNumbers = {"1", "2", "3", "4", "5"};
 	private static Integer[] roundNumbers = {1, 3, 5};
-	private JTextField textField_1;
+	private JTextField textRoundBet;
 	
 	private static Game game = new Game();
 	private static Player playerOne = new Player();
@@ -61,72 +61,72 @@ public class WindowGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel1 = new JPanel();
-		panel1.setBounds(0, 0, 434, 271);
-		frame.getContentPane().add(panel1);
-		panel1.setLayout(null);
-		panel1.setVisible(true);
+		JPanel panelMain = new JPanel();
+		panelMain.setBounds(0, 0, 434, 271);
+		frame.getContentPane().add(panelMain);
+		panelMain.setLayout(null);
+		panelMain.setVisible(true);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 434, 271);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-		panel.setVisible(false);
+		JPanel panelGame = new JPanel();
+		panelGame.setBounds(0, 0, 434, 271);
+		frame.getContentPane().add(panelGame);
+		panelGame.setLayout(null);
+		panelGame.setVisible(false);
 		
 		JLabel lblDiceGame = new JLabel("Dice Game - New Game", SwingConstants.CENTER);		
 		lblDiceGame.setBounds(0, 0, 434, 25);
 		lblDiceGame.setFont(new Font("Tahoma", Font.BOLD, 20));
-		panel1.add(lblDiceGame);
+		panelMain.add(lblDiceGame);
 		
-		JLabel lblPlayerName = new JLabel("Player 1 Name:");
-		lblPlayerName.setBounds(97, 52, 99, 14);
-		panel1.add(lblPlayerName);
+		JLabel lblPlayerOneName = new JLabel("Player 1 Name:");
+		lblPlayerOneName.setBounds(97, 52, 99, 14);
+		panelMain.add(lblPlayerOneName);
 		
-		JLabel lblPlayerName_1 = new JLabel("Player 2 Name:");
-		lblPlayerName_1.setBounds(97, 77, 109, 14);
-		panel1.add(lblPlayerName_1);
+		JLabel lblPlayerTwoName = new JLabel("Player 2 Name:");
+		lblPlayerTwoName.setBounds(97, 77, 109, 14);
+		panelMain.add(lblPlayerTwoName);
 		
 		JLabel lblNumberOfDice = new JLabel("Number of Dice:");
 		lblNumberOfDice.setBounds(97, 121, 123, 14);
-		panel1.add(lblNumberOfDice);
+		panelMain.add(lblNumberOfDice);
 		
 		JLabel lblNumberOfRounds = new JLabel("Number of Rounds:");
 		lblNumberOfRounds.setBounds(97, 146, 123, 14);
-		panel1.add(lblNumberOfRounds);
+		panelMain.add(lblNumberOfRounds);
 		
 		JLabel lblPlayerStartingMoney = new JLabel("Player starting Money:");
 		lblPlayerStartingMoney.setBounds(97, 185, 155, 14);
-		panel1.add(lblPlayerStartingMoney);
+		panelMain.add(lblPlayerStartingMoney);
 		
-		txtPlayer = new JTextField();
-		txtPlayer.setHorizontalAlignment(SwingConstants.CENTER);
-		txtPlayer.setText("Player 1");
-		txtPlayer.setBounds(216, 49, 112, 20);
-		panel1.add(txtPlayer);
-		txtPlayer.setColumns(10);
+		txtPlayerOneName = new JTextField();
+		txtPlayerOneName.setHorizontalAlignment(SwingConstants.CENTER);
+		txtPlayerOneName.setText("Player 1");
+		txtPlayerOneName.setBounds(216, 49, 112, 20);
+		panelMain.add(txtPlayerOneName);
+		txtPlayerOneName.setColumns(10);
 		
-		txtPlayer_1 = new JTextField();
-		txtPlayer_1.setHorizontalAlignment(SwingConstants.CENTER);
-		txtPlayer_1.setText("Player 2");
-		txtPlayer_1.setBounds(216, 74, 112, 20);
-		panel1.add(txtPlayer_1);
-		txtPlayer_1.setColumns(10);
+		txtPlayerTwoName = new JTextField();
+		txtPlayerTwoName.setHorizontalAlignment(SwingConstants.CENTER);
+		txtPlayerTwoName.setText("Player 2");
+		txtPlayerTwoName.setBounds(216, 74, 112, 20);
+		panelMain.add(txtPlayerTwoName);
+		txtPlayerTwoName.setColumns(10);
 		
 		JComboBox<String> comboBoxDice = new JComboBox(diceNumbers);
 		comboBoxDice.setSelectedIndex(1);
 		comboBoxDice.setBounds(252, 118, 40, 20);
-		panel1.add(comboBoxDice);
+		panelMain.add(comboBoxDice);
 		
 		JComboBox<Integer> comboBoxRounds = new JComboBox(roundNumbers);
 		comboBoxRounds.setSelectedIndex(1);
 		comboBoxRounds.setBounds(252, 143, 40, 20);
-		panel1.add(comboBoxRounds);
+		panelMain.add(comboBoxRounds);
 		
 		txtStartingFunds = new JTextField();
 		txtStartingFunds.setHorizontalAlignment(SwingConstants.CENTER);
-		txtStartingFunds.setText("0");
+		txtStartingFunds.setText("100");
 		txtStartingFunds.setBounds(262, 182, 66, 20);
-		panel1.add(txtStartingFunds);
+		panelMain.add(txtStartingFunds);
 		txtStartingFunds.setColumns(10);
 		
 		
@@ -138,113 +138,138 @@ public class WindowGUI {
 			}
 		});
 		btnExit.setBounds(230, 239, 99, 22);
-		panel1.add(btnExit);
+		panelMain.add(btnExit);
 						
-		JLabel lblPlayer = new JLabel("Player 1");
-		lblPlayer.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPlayer.setBounds(21, 11, 46, 14);
-		panel.add(lblPlayer);
+		JLabel lblPlayerOne = new JLabel("Player 1");
+		lblPlayerOne.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPlayerOne.setBounds(21, 11, 46, 14);
+		panelGame.add(lblPlayerOne);
 		
-		JLabel lblNamep = new JLabel("Namep1");
-		lblNamep.setBounds(21, 28, 46, 14);
-		panel.add(lblNamep);
+		JLabel lblNamePlayerOne = new JLabel("");
+		lblNamePlayerOne.setBounds(21, 28, 46, 14);
+		panelGame.add(lblNamePlayerOne);
 		
-		JLabel lblPlayer_1 = new JLabel("Player 2");
-		lblPlayer_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPlayer_1.setBounds(378, 11, 46, 14);
-		panel.add(lblPlayer_1);
+		JLabel lblPlayerTwo = new JLabel("Player 2");
+		lblPlayerTwo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPlayerTwo.setBounds(378, 11, 46, 14);
+		panelGame.add(lblPlayerTwo);
 		
-		JLabel lblNamep_1 = new JLabel("Namep2");
-		lblNamep_1.setBounds(378, 28, 46, 14);
-		panel.add(lblNamep_1);
+		JLabel lblNamePlayerTwo = new JLabel("");
+		lblNamePlayerTwo.setBounds(378, 28, 46, 14);
+		panelGame.add(lblNamePlayerTwo);
 		
-		JLabel lblFundsp = new JLabel("Fundsp1");
-		lblFundsp.setBounds(21, 53, 46, 14);
-		panel.add(lblFundsp);
+		JLabel lblFundsPlayerOne = new JLabel("");
+		lblFundsPlayerOne.setBounds(21, 53, 46, 14);
+		panelGame.add(lblFundsPlayerOne);
 		
-		JLabel lblFundsp_1 = new JLabel("Fundsp2");
-		lblFundsp_1.setBounds(378, 53, 46, 14);
-		panel.add(lblFundsp_1);
+		JLabel lblFundsPlayerTwo = new JLabel("");
+		lblFundsPlayerTwo.setBounds(378, 53, 46, 14);
+		panelGame.add(lblFundsPlayerTwo);
 		
 		JLabel lblScore = new JLabel("Score:");
 		lblScore.setBounds(21, 78, 46, 14);
-		panel.add(lblScore);
+		panelGame.add(lblScore);
 		
-		JLabel lblPScore = new JLabel("0");
-		lblPScore.setBounds(64, 78, 46, 14);
-		panel.add(lblPScore);
+		JLabel lblScorePlayerOne = new JLabel("0");
+		lblScorePlayerOne.setBounds(64, 78, 46, 14);
+		panelGame.add(lblScorePlayerOne);
 		
-		JLabel lblScore_1 = new JLabel("Score: ");
-		lblScore_1.setBounds(325, 78, 46, 14);
-		panel.add(lblScore_1);
+		JLabel lblScore1 = new JLabel("Score: ");
+		lblScore1.setBounds(325, 78, 46, 14);
+		panelGame.add(lblScore1);
 		
-		JLabel lblP1score = new JLabel("0");
-		lblP1score.setBounds(378, 78, 46, 14);
-		panel.add(lblP1score);
+		JLabel lblScorePlayerTwo = new JLabel("0");
+		lblScorePlayerTwo.setBounds(378, 78, 46, 14);
+		panelGame.add(lblScorePlayerTwo);
+		
+		
+		
+		JLabel lblRoundBet = new JLabel("Round Bet:");
+		lblRoundBet.setBounds(150, 212, 70, 14);
+		panelGame.add(lblRoundBet);
+		
+		textRoundBet = new JTextField();
+		textRoundBet.setText("0");
+		textRoundBet.setBounds(230, 209, 86, 20);
+		panelGame.add(textRoundBet);
+		textRoundBet.setColumns(10);
+		
 		
 		JButton btnQuit = new JButton("Quit");
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panel.setVisible(false);
-				panel1.setVisible(true);
+				panelGame.setVisible(false);
+				panelMain.setVisible(true);
 			}
 		});
 		btnQuit.setBounds(230, 237, 89, 23);
-		panel.add(btnQuit);
+		panelGame.add(btnQuit);
+		
+		JButton btnContinue = new JButton("Roll");
+		btnContinue.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				playerOne.resetScore();
+				playerTwo.resetScore();
+				game.setCurrentRound(1);
+				//btnRoll.setVisible(true);
+				btnContinue.setVisible(false);					
+			}
+		});
+		
+		btnContinue.setBounds(131, 237, 89, 23);
+		panelGame.add(btnContinue);
+		btnContinue.setVisible(false);
 		
 		JButton btnRoll = new JButton("Roll");
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblNamep.setText(playerOne.getName());
-				lblNamep_1.setText(playerTwo.getName());
-				lblFundsp.setText("$"+playerOne.getMoney());
-				lblFundsp_1.setText("$"+playerTwo.getMoney());
-				lblPScore.setText(""+playerOne.getScore());
-				lblP1score.setText(""+playerTwo.getScore());
-				game.newRound();
-				lblNamep.setText(playerOne.getName());
-				lblNamep_1.setText(playerTwo.getName());
-				lblFundsp.setText("$"+playerOne.getMoney());
-				lblFundsp_1.setText("$"+playerTwo.getMoney());
-				lblPScore.setText(""+playerOne.getScore());
-				lblP1score.setText(""+playerTwo.getScore());
+				lblNamePlayerOne.setText(playerOne.getName());
+				lblNamePlayerTwo.setText(playerTwo.getName());
+				lblFundsPlayerOne.setText("$"+playerOne.getMoney());
+				lblFundsPlayerTwo.setText("$"+playerTwo.getMoney());
+				lblScorePlayerOne.setText(""+playerOne.getScore());
+				lblScorePlayerTwo.setText(""+playerTwo.getScore());
+				if(game.hasRoundsRemaining()){
+					game.newRound(Integer.parseInt(textRoundBet.getText()));
+				}
+				else {
+					//btnRoll.setVisible(false);
+					btnContinue.setVisible(true);				
+				}
+				lblNamePlayerOne.setText(playerOne.getName());
+				lblNamePlayerTwo.setText(playerTwo.getName());
+				lblFundsPlayerOne.setText("$"+playerOne.getMoney());
+				lblFundsPlayerTwo.setText("$"+playerTwo.getMoney());
+				lblScorePlayerOne.setText(""+playerOne.getScore());
+				lblScorePlayerTwo.setText(""+playerTwo.getScore());
 			}
 		});
+		
 		btnRoll.setBounds(131, 237, 89, 23);
-		panel.add(btnRoll);
-		
-		JLabel lblRoundBet = new JLabel("Round Bet:");
-		lblRoundBet.setBounds(150, 212, 70, 14);
-		panel.add(lblRoundBet);
-		
-		textField_1 = new JTextField();
-		textField_1.setText("0");
-		textField_1.setBounds(230, 209, 86, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
-		
+		panelGame.add(btnRoll);
+
 		btnStart.addActionListener(new ActionListener() {
 			//START BUTTON This will update the players names, money and create a new game based on the combo box selections
 			public void actionPerformed(ActionEvent e) {
-				panel.setVisible(true);
-				panel1.setVisible(false);
-				playerOne = new Player(txtPlayer.getText(), Integer.parseInt(txtStartingFunds.getText()));
-				playerTwo = new Player(txtPlayer_1.getText(), Integer.parseInt(txtStartingFunds.getText()));
+				panelGame.setVisible(true);
+				panelMain.setVisible(false);
+				playerOne = new Player(txtPlayerOneName.getText(), Integer.parseInt(txtStartingFunds.getText()));
+				playerTwo = new Player(txtPlayerTwoName.getText(), Integer.parseInt(txtStartingFunds.getText()));
 				game = new Game(Integer.parseInt(comboBoxRounds.getSelectedItem().toString()), comboBoxDice.getSelectedIndex()+1, playerOne, playerTwo);
-				lblNamep.setText(playerOne.getName());
-				lblNamep_1.setText(playerTwo.getName());
-				lblFundsp.setText("$"+playerOne.getMoney());
-				lblFundsp_1.setText("$"+playerTwo.getMoney());
-				lblPScore.setText(""+playerOne.getScore());
-				lblP1score.setText(""+playerTwo.getScore());	
+				lblNamePlayerOne.setText(playerOne.getName());
+				lblNamePlayerTwo.setText(playerTwo.getName());
+				lblFundsPlayerOne.setText("$"+playerOne.getMoney());
+				lblFundsPlayerTwo.setText("$"+playerTwo.getMoney());
+				lblScorePlayerOne.setText(""+playerOne.getScore());
+				lblScorePlayerTwo.setText(""+playerTwo.getScore());	
 			}
 		});
 		btnStart.setBounds(123, 239, 102, 22);
-		panel1.add(btnStart);
+		panelMain.add(btnStart);
 		
-		JPanel panel2 = new JPanel();
-		panel2.setBounds(157, 53, 135, 129);
-		panel.add(panel2);
-		panel2.setVisible(false);
+		JPanel panelCoin = new JPanel();
+		panelCoin.setBounds(157, 53, 135, 129);
+		panelGame.add(panelCoin);
+		panelCoin.setVisible(false);
 	}
 }

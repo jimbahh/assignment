@@ -128,7 +128,7 @@ public class Gui {
 			public void actionPerformed(ActionEvent e) {
 				btnRoll.setText("Roll");
 				if((playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds()) && game.hasRoundsRemaining()) {
-					game.newRound();
+					//game.newRound();
 					mainText.setText("");
 				}
 				else {
@@ -137,7 +137,7 @@ public class Gui {
 					game = new Game(game.getRounds(), game.getDice()+1, playerOne, playerTwo);
 					playerOne.resetScore();
 					playerTwo.resetScore();
-					game.newRound();
+					//game.newRound();
 				}
 				
 				lblRound.setText("Round " + (game.getRound()-1));

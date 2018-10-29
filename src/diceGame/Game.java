@@ -64,11 +64,22 @@ public class Game {
 		}
 	}
 	
-	public void newRound() {
-		System.out.println("Round "+currentRound + " of " + (numberOfRounds));
-		playerOne.roll(numberOfDice);
-		playerTwo.roll(numberOfDice);
-		currentRound ++;
+	public void newRound(int bet) {
+		if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds()) {
+			if(currentRound <= numberOfRounds) {
+				System.out.println("Round "+currentRound + " of " + (numberOfRounds));
+				playerOne.roll(numberOfDice);
+				playerTwo.roll(numberOfDice);
+				currentRound ++;
+			}
+			else {
+				this.getGameWinner(bet);
+			}
+		}
+	}
+	
+	public void setCurrentRound(int round) {
+		this.currentRound = round;
 	}
 	
 	public Player getGameWinner(int bet) {
