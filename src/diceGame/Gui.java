@@ -10,6 +10,9 @@ public class Gui {
 	
 	private static String[] diceNumbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 	private static Integer[] roundNumbers = {1, 3, 5, 7, 9};
+	private static Game game = new Game();
+	private static Player playerOne = new Player();
+	private static Player playerTwo = new Player();
 	
 	private static void initNewGame() {
 		
@@ -69,15 +72,15 @@ public class Gui {
 	
 		class NewGameAction implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
-				Player playerOne = new Player (txtPlayer1Name.getText(), Integer.parseInt(txtStartingMoney.getText()));
-				Player playerTwo = new Player (txtPlayer2Name.getText(), Integer.parseInt(txtStartingMoney.getText()));
-				Game game = new Game(Integer.parseInt(cBoxRoundNumber.getSelectedItem().toString()), cBoxDiceNumber.getSelectedIndex()+1, playerOne, playerTwo, 100);
-				game.newRound();
+				playerOne = new Player (txtPlayer1Name.getText(), Integer.parseInt(txtStartingMoney.getText()));
+				playerTwo = new Player (txtPlayer2Name.getText(), Integer.parseInt(txtStartingMoney.getText()));
+				game = new Game(Integer.parseInt(cBoxRoundNumber.getSelectedItem().toString()), cBoxDiceNumber.getSelectedIndex()+1, playerOne, playerTwo, 100);
 				frame.dispose();
-				roundWindow(game);
+				roundWindow();
 				
 			}
 		}
+		
 
 		exitButton.addActionListener(new ExitAction());
 		startButton.addActionListener(new NewGameAction());
@@ -86,15 +89,80 @@ public class Gui {
 		
 	}
 	
-	private static void roundWindow(Game game) {
+	private static void roundWindow() {
 		JFrame frameGame = new JFrame("Dice Game - GAME ON!");
 		frameGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameGame.setLocationRelativeTo(null);
 		frameGame.setSize(350, 400);
 		
-		//JLabel lblRound = new JLabel();
+		JPanel playerOnePanel = new JPanel();
+		JPanel playerTwoPanel = new JPanel();
+		JPanel btnPanel = new JPanel();
+		JPanel centerPanel = new JPanel();
+		
+		JLabel lblPlayer1 = new JLabel(playerOne.getName());
+		JLabel lblPlayer2 = new JLabel(playerTwo.getName());
+		
+		JLabel lblPlayer1Money = new JLabel("$"+playerOne.getMoney());
+		JLabel lblPlayer2Money = new JLabel("$"+playerTwo.getMoney());
+		
+		JLabel lblPlayer1Score = new JLabel("Score: "+playerOne.getScore());
+		JLabel lblPlayer2Score = new JLabel("Score: "+playerTwo.getScore());
+		
+		JLabel lblRound = new JLabel("Round Start", SwingConstants.CENTER);
+		lblRound.setFont(new Font("", Font.BOLD, 20));
+		
+		JTextArea mainText = new JTextArea(5,10);
+		
+		class RollAction implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds() && game.hasRoundsRemaining()) {
+					mainText.setText("Round Winner is " + game.newRound().getName());
+				}
+				else {
+					// to-do add winner screen/return to main window
+				}
+				
+				lblRound.setText("Round " + (game.getRound()-1));
+				
+				lblPlayer1Money.setText("$" + playerOne.getMoney());
+				lblPlayer2Money.setText("$" + playerTwo.getMoney());
+				
+				lblPlayer1Score.setText("Score: " + playerOne.getScore());
+				lblPlayer2Score.setText("Score: " + playerTwo.getScore());
+				
+				
+				
+				//console debug
+				//System.out.println("Round Winner is " + game.getWinner().getName());
+				System.out.println("p1 " + playerOne.getMoney());
+				System.out.println("p2 " + playerTwo.getMoney());
+			}
+		}
+		
+		JButton btnRoll = new JButton("Roll");
+		btnRoll.addActionListener(new RollAction());
 		
 		
+		
+		playerOnePanel.add(lblPlayer1);
+		playerOnePanel.add(lblPlayer1Money);
+		playerOnePanel.add(lblPlayer1Score);
+		
+		playerTwoPanel.add(lblPlayer2);
+		playerTwoPanel.add(lblPlayer2Money);
+		playerTwoPanel.add(lblPlayer2Score);
+		
+		centerPanel.add(mainText);
+		
+		btnPanel.add(btnRoll);
+		
+		
+		frameGame.getContentPane().add(BorderLayout.NORTH, lblRound);
+		frameGame.getContentPane().add(BorderLayout.WEST, playerOnePanel);
+		frameGame.getContentPane().add(BorderLayout.EAST, playerTwoPanel);
+		frameGame.getContentPane().add(BorderLayout.SOUTH, btnPanel);
+		frameGame.getContentPane().add(BorderLayout.CENTER, centerPanel);
 		frameGame.setVisible(true);
 	}
 	

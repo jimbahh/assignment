@@ -14,11 +14,7 @@ public class Player {
 		this.name = name;
 		this.money = money;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+		
 	public void setMoney(int money) {
 		this.money += money;
 	}

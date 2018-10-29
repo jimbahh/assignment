@@ -21,6 +21,10 @@ public class Game {
 		this.bet = bet;
 	}
 	
+	public int getRound() {
+		return currentRound;
+	}
+	
 	public void setBet(Player winner, Player loser) {
 		winner.setMoney(bet);
 		loser.setMoney(bet*-1);
@@ -63,11 +67,12 @@ public class Game {
 		}
 	}
 	
-	public void newRound() {
+	public Player newRound() {
 		System.out.println("Round "+currentRound + " of " + (rounds-1));
 		playerOne.roll(diceNumber);
 		playerTwo.roll(diceNumber);
 		currentRound ++;
+		return getWinner();
 	}
 	
 }
