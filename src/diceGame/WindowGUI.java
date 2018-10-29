@@ -20,11 +20,16 @@ public class WindowGUI {
 	private JFrame frame;
 	private JTextField txtPlayer;
 	private JTextField txtPlayer_1;
-	private JTextField textField;
+	private JTextField txtStartingFunds;
 	private final JButton btnStart = new JButton("Start");
 	
 	private static String[] diceNumbers = {"1", "2", "3", "4", "5"};
 	private static Integer[] roundNumbers = {1, 3, 5};
+	private JTextField textField_1;
+	
+	private static Game game = new Game();
+	private static Player playerOne = new Player();
+	private static Player playerTwo = new Player();
 
 	/**
 	 * Launch the application.
@@ -100,15 +105,15 @@ public class WindowGUI {
 		lblScore.setBounds(21, 78, 46, 14);
 		panel.add(lblScore);
 		
-		JLabel lblPScore = new JLabel("P1 SCore");
-		lblPScore.setBounds(57, 78, 46, 14);
+		JLabel lblPScore = new JLabel("0");
+		lblPScore.setBounds(64, 78, 46, 14);
 		panel.add(lblPScore);
 		
 		JLabel lblScore_1 = new JLabel("Score: ");
-		lblScore_1.setBounds(343, 78, 46, 14);
+		lblScore_1.setBounds(325, 78, 46, 14);
 		panel.add(lblScore_1);
 		
-		JLabel lblPscore = new JLabel("p2SCore");
+		JLabel lblPscore = new JLabel("0");
 		lblPscore.setBounds(378, 78, 46, 14);
 		panel.add(lblPscore);
 		
@@ -156,6 +161,21 @@ public class WindowGUI {
 		btnRoll.setBounds(131, 237, 89, 23);
 		panel.add(btnRoll);
 		
+		JLabel lblRoundBet = new JLabel("Round Bet:");
+		lblRoundBet.setBounds(150, 212, 70, 14);
+		panel.add(lblRoundBet);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("0");
+		textField_1.setBounds(230, 209, 86, 20);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JPanel panel2 = new JPanel();
+		panel2.setBounds(157, 53, 135, 129);
+		panel.add(panel2);
+		panel2.setVisible(false);
+		
 		txtPlayer = new JTextField();
 		txtPlayer.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPlayer.setText("Player 1");
@@ -170,24 +190,36 @@ public class WindowGUI {
 		panel1.add(txtPlayer_1);
 		txtPlayer_1.setColumns(10);
 		
-		JComboBox<String> comboBox = new JComboBox<>();
-		comboBox.setBounds(252, 118, 40, 20);
-		panel1.add(comboBox);
+		JComboBox<String> comboBoxDice = new JComboBox(diceNumbers);
+		comboBoxDice.setSelectedIndex(1);
+		comboBoxDice.setBounds(252, 118, 40, 20);
+		panel1.add(comboBoxDice);
 		
-		JComboBox<Integer> comboBox_1 = new JComboBox<>();
-		comboBox_1.setBounds(252, 143, 40, 20);
-		panel1.add(comboBox_1);
+		JComboBox<Integer> comboBoxRounds = new JComboBox(roundNumbers);
+		comboBoxRounds.setSelectedIndex(1);
+		comboBoxRounds.setBounds(252, 143, 40, 20);
+		panel1.add(comboBoxRounds);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setText("0");
-		textField.setBounds(262, 182, 66, 20);
-		panel1.add(textField);
-		textField.setColumns(10);
+		txtStartingFunds = new JTextField();
+		txtStartingFunds.setHorizontalAlignment(SwingConstants.CENTER);
+		txtStartingFunds.setText("0");
+		txtStartingFunds.setBounds(262, 182, 66, 20);
+		panel1.add(txtStartingFunds);
+		txtStartingFunds.setColumns(10);
 		btnStart.addActionListener(new ActionListener() {
+			//START BUTTON This will update the players names, money and create a new game based on the combo box selections
 			public void actionPerformed(ActionEvent e) {
 				panel.setVisible(true);
 				panel1.setVisible(false);
+				playerOne = new Player(txtPlayer.getText(), Integer.parseInt(txtStartingFunds.getText()));
+				playerTwo = new Player(txtPlayer_1.getText(), Integer.parseInt(txtStartingFunds.getText()));
+				game = new Game(comboBoxDice.getSelectedIndex()+1, Integer.parseInt(comboBoxRounds.getSelectedItem().toString()), playerOne, playerTwo);
+				lblNamep.setText(playerOne.getName());
+				lblNamep_1.setText(playerTwo.getName());
+				lblFundsp.setText("$"+playerOne.getMoney());
+				lblFundsp_1.setText("$"+playerTwo.getMoney());
+				lblFundsp.setText(""+playerOne.getScore());
+				lblFundsp_1.setText(""+playerTwo.getScore());	
 			}
 		});
 		btnStart.setBounds(123, 239, 102, 22);
