@@ -19,11 +19,14 @@ public class Player {
 		this.money += money;
 	}
 	
+	public void resetScore() {
+		this.score = 0;
+	}
+	
 	public void roll(int diceNumber) {
-		for (int i = diceNumber; i>0; i--) {
+		for (int i = 0; i < diceNumber; i++) {
 			this.score += diceRoll();
 		}
-		System.out.println(this.name + " " + this.getScore());
 	}
 		
 	private int diceRoll() {

@@ -5,11 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-
 public class Gui {
 	
-	private static String[] diceNumbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-	private static Integer[] roundNumbers = {1, 3, 5, 7, 9};
+	private static String[] diceNumbers = {"1", "2", "3", "4", "5"};
+	private static Integer[] roundNumbers = {1, 3, 5};
 	private static Game game = new Game();
 	private static Player playerOne = new Player();
 	private static Player playerTwo = new Player();
@@ -74,19 +73,15 @@ public class Gui {
 			public void actionPerformed(ActionEvent e) {
 				playerOne = new Player (txtPlayer1Name.getText(), Integer.parseInt(txtStartingMoney.getText()));
 				playerTwo = new Player (txtPlayer2Name.getText(), Integer.parseInt(txtStartingMoney.getText()));
-				game = new Game(Integer.parseInt(cBoxRoundNumber.getSelectedItem().toString()), cBoxDiceNumber.getSelectedIndex()+1, playerOne, playerTwo, 100);
+				game = new Game(Integer.parseInt(cBoxRoundNumber.getSelectedItem().toString()), cBoxDiceNumber.getSelectedIndex()+1, playerOne, playerTwo);
 				frame.dispose();
-				roundWindow();
-				
+				roundWindow();	
 			}
 		}
-		
-
 		exitButton.addActionListener(new ExitAction());
 		startButton.addActionListener(new NewGameAction());
 	
 		frame.setVisible(true);
-		
 	}
 	
 	private static void roundWindow() {
@@ -109,18 +104,39 @@ public class Gui {
 		JLabel lblPlayer1Score = new JLabel("Score: "+playerOne.getScore());
 		JLabel lblPlayer2Score = new JLabel("Score: "+playerTwo.getScore());
 		
+		JLabel lblBetAmount = new JLabel("Round Bet: ");
+		JTextField txtBetAmount = new JTextField("0");
+		
 		JLabel lblRound = new JLabel("Round Start", SwingConstants.CENTER);
 		lblRound.setFont(new Font("", Font.BOLD, 20));
 		
 		JTextArea mainText = new JTextArea(5,10);
 		
+		JButton btnRoll = new JButton("Roll");
+		JButton btnQuit = new JButton("Quit");
+		
+		class QuitAction implements ActionListener{
+			public void actionPerformed(ActionEvent e) {
+				frameGame.dispose();
+				initNewGame();
+			}		
+		}
+		
+		btnQuit.addActionListener(new QuitAction());
+		
 		class RollAction implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
+				btnRoll.setText("Roll");
 				if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds() && game.hasRoundsRemaining()) {
-					mainText.setText("Round Winner is " + game.newRound().getName());
+					game.newRound();
+					mainText.setText("");
 				}
 				else {
-					// to-do add winner screen/return to main window
+					btnRoll.setText("Next Game");
+					mainText.setText("Game Winner is" + game.getGameWinner(Integer.parseInt(txtBetAmount.getText())).getName());
+					game = new Game(game.getRounds(), game.getDice()+1, playerOne, playerTwo);
+					playerOne.resetScore();
+					playerTwo.resetScore();
 				}
 				
 				lblRound.setText("Round " + (game.getRound()-1));
@@ -131,8 +147,6 @@ public class Gui {
 				lblPlayer1Score.setText("Score: " + playerOne.getScore());
 				lblPlayer2Score.setText("Score: " + playerTwo.getScore());
 				
-				
-				
 				//console debug
 				//System.out.println("Round Winner is " + game.getWinner().getName());
 				System.out.println("p1 " + playerOne.getMoney());
@@ -140,10 +154,7 @@ public class Gui {
 			}
 		}
 		
-		JButton btnRoll = new JButton("Roll");
 		btnRoll.addActionListener(new RollAction());
-		
-		
 		
 		playerOnePanel.add(lblPlayer1);
 		playerOnePanel.add(lblPlayer1Money);
@@ -154,9 +165,11 @@ public class Gui {
 		playerTwoPanel.add(lblPlayer2Score);
 		
 		centerPanel.add(mainText);
+		centerPanel.add(lblBetAmount);
+		centerPanel.add(txtBetAmount);
 		
 		btnPanel.add(btnRoll);
-		
+		btnPanel.add(btnQuit);
 		
 		frameGame.getContentPane().add(BorderLayout.NORTH, lblRound);
 		frameGame.getContentPane().add(BorderLayout.WEST, playerOnePanel);
@@ -170,4 +183,3 @@ public class Gui {
 		initNewGame();
 	}
 }
-

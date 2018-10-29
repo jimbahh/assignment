@@ -3,35 +3,36 @@ package diceGame;
 import java.util.Random;
 
 public class Game {
-	private int bet =0;
 	private int currentRound = 1;
-	private int rounds = 3;
-	private int diceNumber = 2;
+	private int numberOfRounds = 3;
+	private int numberOfDice = 2;
 	Player playerOne = new Player();
 	Player playerTwo = new Player();
 	
 	public Game() {
 	}
 	
-	public Game(int rounds, int diceNumber, Player playerOne, Player playerTwo, int bet) {
-		this.rounds = rounds + 1;
-		this.diceNumber = diceNumber;
+	public Game(int numberOfRounds, int numberOfDice, Player playerOne, Player playerTwo) {
+		this.numberOfRounds = numberOfRounds;
+		this.numberOfDice = numberOfDice;
 		this.playerOne = playerOne;
 		this.playerTwo = playerTwo;
-		this.bet = bet;
+	}
+	
+	public int getRounds() {
+		return numberOfRounds;
+	}
+	
+	public int getDice() {
+		return numberOfDice;
 	}
 	
 	public int getRound() {
 		return currentRound;
 	}
-	
-	public void setBet(Player winner, Player loser) {
-		winner.setMoney(bet);
-		loser.setMoney(bet*-1);
-	}
-	
+		
 	public boolean hasRoundsRemaining() {
-		if (currentRound == rounds) {
+		if (currentRound > numberOfRounds) {
 			return false;
 		}
 		return true;
@@ -45,34 +46,41 @@ public class Game {
 		return false;
 	}
 	
-	public Player getWinner() {
+	public Player getRoundWinner() {
 		if (playerOne.getScore() == playerTwo.getScore()) {
 			System.out.println("Round Draw Flipping Coin...");
 			if (coinFlip()) {
-				setBet(playerOne, playerTwo);
 				return playerOne;
 			}
 			else {
-				setBet(playerTwo, playerOne);
 				return playerTwo;
 			}
 		}
 		else if (playerOne.getScore() > playerTwo.getScore()) {
-			setBet(playerOne, playerTwo);
 			return playerOne;
 		}
 		else {
-			setBet(playerTwo, playerOne);
 			return playerTwo;
 		}
 	}
 	
-	public Player newRound() {
-		System.out.println("Round "+currentRound + " of " + (rounds-1));
-		playerOne.roll(diceNumber);
-		playerTwo.roll(diceNumber);
+	public void newRound() {
+		System.out.println("Round "+currentRound + " of " + (numberOfRounds));
+		playerOne.roll(numberOfDice);
+		playerTwo.roll(numberOfDice);
 		currentRound ++;
-		return getWinner();
 	}
 	
+	public Player getGameWinner(int bet) {
+		if (getRoundWinner()==playerOne) {
+			playerOne.setMoney(bet);
+			playerTwo.setMoney(bet*-1);
+			return playerOne;
+		}
+		else {
+			playerOne.setMoney(bet*-1);
+			playerTwo.setMoney(bet);
+			return playerTwo;
+		}
+	}
 }
