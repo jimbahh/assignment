@@ -47,9 +47,9 @@ public class Player {
 	}
 	  
 	public boolean checkPlayerFunds() {
-		if (this.getMoney() > 0) {
-			return true;
+		if (this.getMoney() <= 0) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 } 

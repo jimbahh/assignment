@@ -88,7 +88,7 @@ public class Gui {
 		JFrame frameGame = new JFrame("Dice Game - GAME ON!");
 		frameGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameGame.setLocationRelativeTo(null);
-		frameGame.setSize(350, 400);
+		frameGame.setSize(450, 400);
 		
 		JPanel playerOnePanel = new JPanel();
 		JPanel playerTwoPanel = new JPanel();
@@ -105,7 +105,7 @@ public class Gui {
 		JLabel lblPlayer2Score = new JLabel("Score: "+playerTwo.getScore());
 		
 		JLabel lblBetAmount = new JLabel("Round Bet: ");
-		JTextField txtBetAmount = new JTextField("0");
+		JTextField txtBetAmount = new JTextField("0", 10);
 		
 		JLabel lblRound = new JLabel("Round Start", SwingConstants.CENTER);
 		lblRound.setFont(new Font("", Font.BOLD, 20));
@@ -127,7 +127,7 @@ public class Gui {
 		class RollAction implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				btnRoll.setText("Roll");
-				if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds() && game.hasRoundsRemaining()) {
+				if((playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds()) && game.hasRoundsRemaining()) {
 					game.newRound();
 					mainText.setText("");
 				}
@@ -137,6 +137,7 @@ public class Gui {
 					game = new Game(game.getRounds(), game.getDice()+1, playerOne, playerTwo);
 					playerOne.resetScore();
 					playerTwo.resetScore();
+					game.newRound();
 				}
 				
 				lblRound.setText("Round " + (game.getRound()-1));
@@ -149,8 +150,10 @@ public class Gui {
 				
 				//console debug
 				//System.out.println("Round Winner is " + game.getWinner().getName());
-				System.out.println("p1 " + playerOne.getMoney());
-				System.out.println("p2 " + playerTwo.getMoney());
+				System.out.println("P1 Score: " + playerOne.getScore());
+				System.out.println("P2 Score: " + playerTwo.getScore());
+				System.out.println("p1 Funds: " + playerOne.getMoney());
+				System.out.println("p2 Funds: " + playerTwo.getMoney());
 			}
 		}
 		
