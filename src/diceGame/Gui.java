@@ -10,8 +10,10 @@ public class Gui {
 	private static String[] diceNumbers = {"1", "2", "3", "4", "5"};
 	private static Integer[] roundNumbers = {1, 3, 5};
 	private static Game game = new Game();
-	private static Player playerOne = new Player();
-	private static Player playerTwo = new Player();
+	//private static Player playerOne = new Player();
+		//private static Player playerTwo = new Player();
+	static PlayerOne playerOne = PlayerOne.getInstance();
+	static PlayerTwo playerTwo = PlayerTwo.getInstance();
 	
 	private static void initNewGame() {
 		
@@ -71,8 +73,12 @@ public class Gui {
 	
 		class NewGameAction implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
-				playerOne = new Player (txtPlayer1Name.getText(), Integer.parseInt(txtStartingMoney.getText()));
-				playerTwo = new Player (txtPlayer2Name.getText(), Integer.parseInt(txtStartingMoney.getText()));
+				//playerOne = new Player (txtPlayer1Name.getText(), Integer.parseInt(txtStartingMoney.getText()));
+				//playerTwo = new Player (txtPlayer2Name.getText(), Integer.parseInt(txtStartingMoney.getText()));
+				playerOne.name = txtPlayer1Name.getText();
+				playerOne.money = Integer.parseInt(txtStartingMoney.getText());
+				playerTwo.name = txtPlayer2Name.getText();
+				playerTwo.money = Integer.parseInt(txtStartingMoney.getText());
 				game = new Game(Integer.parseInt(cBoxRoundNumber.getSelectedItem().toString()), cBoxDiceNumber.getSelectedIndex()+1, playerOne, playerTwo);
 				frame.dispose();
 				roundWindow();	

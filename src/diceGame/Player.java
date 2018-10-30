@@ -2,10 +2,10 @@ package diceGame;
 
 import java.util.Random;
 
-public class Player {
-	private String name ="";
+public abstract class Player {
+	protected String name ="";
 	private int score = 0;
-	private int money = 0;
+	int money = 0;
 	
 	public Player() {
 	}

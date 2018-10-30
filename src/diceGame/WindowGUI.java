@@ -26,8 +26,8 @@ public class WindowGUI {
 	private JTextField textRoundBet;
 	
 	private static Game game = new Game();
-	private static Player playerOne = new Player();
-	private static Player playerTwo = new Player();
+	PlayerOne playerOne = PlayerOne.getInstance();
+	PlayerTwo playerTwo = PlayerTwo.getInstance();
 
 	/**
 	 * Launch the application.
@@ -57,6 +57,7 @@ public class WindowGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("I Can't Wait To Dice!");
 		frame.setBounds(100, 100, 450, 310);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -73,7 +74,7 @@ public class WindowGUI {
 		panelGame.setLayout(null);
 		panelGame.setVisible(false);
 		
-		JLabel lblDiceGame = new JLabel("Dice Game - New Game", SwingConstants.CENTER);		
+		JLabel lblDiceGame = new JLabel("New Game", SwingConstants.CENTER);		
 		lblDiceGame.setBounds(0, 0, 434, 25);
 		lblDiceGame.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panelMain.add(lblDiceGame);
@@ -112,12 +113,12 @@ public class WindowGUI {
 		panelMain.add(txtPlayerTwoName);
 		txtPlayerTwoName.setColumns(10);
 		
-		JComboBox<String> comboBoxDice = new JComboBox(diceNumbers);
+		JComboBox<String> comboBoxDice = new JComboBox<String>(diceNumbers);
 		comboBoxDice.setSelectedIndex(1);
 		comboBoxDice.setBounds(252, 118, 40, 20);
 		panelMain.add(comboBoxDice);
 		
-		JComboBox<Integer> comboBoxRounds = new JComboBox(roundNumbers);
+		JComboBox<Integer> comboBoxRounds = new JComboBox<Integer>(roundNumbers);
 		comboBoxRounds.setSelectedIndex(1);
 		comboBoxRounds.setBounds(252, 143, 40, 20);
 		panelMain.add(comboBoxRounds);
@@ -253,8 +254,10 @@ public class WindowGUI {
 			public void actionPerformed(ActionEvent e) {
 				panelGame.setVisible(true);
 				panelMain.setVisible(false);
-				playerOne = new Player(txtPlayerOneName.getText(), Integer.parseInt(txtStartingFunds.getText()));
-				playerTwo = new Player(txtPlayerTwoName.getText(), Integer.parseInt(txtStartingFunds.getText()));
+				playerOne.name = txtPlayerOneName.getText();
+				playerOne.money = Integer.parseInt(txtStartingFunds.getText());
+				playerTwo.name = txtPlayerTwoName.getText();
+				playerTwo.money = Integer.parseInt(txtStartingFunds.getText());
 				game = new Game(Integer.parseInt(comboBoxRounds.getSelectedItem().toString()), comboBoxDice.getSelectedIndex()+1, playerOne, playerTwo);
 				lblNamePlayerOne.setText(playerOne.getName());
 				lblNamePlayerTwo.setText(playerTwo.getName());
@@ -272,4 +275,7 @@ public class WindowGUI {
 		panelGame.add(panelCoin);
 		panelCoin.setVisible(false);
 	}
-}
+
+	
+	}
+

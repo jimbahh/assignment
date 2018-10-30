@@ -6,17 +6,17 @@ public class Game {
 	private int currentRound = 1;
 	private int numberOfRounds = 3;
 	private int numberOfDice = 2;
-	Player playerOne = new Player();
-	Player playerTwo = new Player();
+	PlayerOne playerOne = PlayerOne.getInstance();
+	PlayerTwo playerTwo = PlayerTwo.getInstance();
 	
 	public Game() {
+		
 	}
 	
-	public Game(int numberOfRounds, int numberOfDice, Player playerOne, Player playerTwo) {
+	public Game(int numberOfRounds, int numberOfDice, PlayerOne playerOne, PlayerTwo playerTwo) {
 		this.numberOfRounds = numberOfRounds;
 		this.numberOfDice = numberOfDice;
-		this.playerOne = playerOne;
-		this.playerTwo = playerTwo;
+		
 	}
 	
 	public int getRounds() {
