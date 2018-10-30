@@ -183,14 +183,16 @@ public class WindowGUI {
 		lblScorePlayerTwo.setBounds(378, 78, 46, 14);
 		panelGame.add(lblScorePlayerTwo);
 		
-		
+		JLabel lblCurrentRound = new JLabel("Round 1");
+		lblCurrentRound.setBounds(125, 10, 150, 14);
+		panelGame.add(lblCurrentRound);
 		
 		JLabel lblRoundBet = new JLabel("Round Bet:");
 		lblRoundBet.setBounds(150, 212, 70, 14);
 		panelGame.add(lblRoundBet);
 		
 		textRoundBet = new JTextField();
-		textRoundBet.setText("0");
+		textRoundBet.setText("10");
 		textRoundBet.setBounds(230, 209, 86, 20);
 		panelGame.add(textRoundBet);
 		textRoundBet.setColumns(10);
@@ -206,14 +208,15 @@ public class WindowGUI {
 		btnQuit.setBounds(230, 237, 89, 23);
 		panelGame.add(btnQuit);
 		
-		JButton btnContinue = new JButton("Roll");
+		JButton btnContinue = new JButton("Continue");
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				playerOne.resetScore();
 				playerTwo.resetScore();
 				game.setCurrentRound(1);
 				//btnRoll.setVisible(true);
-				btnContinue.setVisible(false);					
+				btnContinue.setVisible(false);	
+				System.out.println("Button CONTINUE");
 			}
 		});
 		
@@ -224,25 +227,30 @@ public class WindowGUI {
 		JButton btnRoll = new JButton("Roll");
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblNamePlayerOne.setText(playerOne.getName());
-				lblNamePlayerTwo.setText(playerTwo.getName());
-				lblFundsPlayerOne.setText("$"+playerOne.getMoney());
-				lblFundsPlayerTwo.setText("$"+playerTwo.getMoney());
-				lblScorePlayerOne.setText(""+playerOne.getScore());
-				lblScorePlayerTwo.setText(""+playerTwo.getScore());
-				if(game.hasRoundsRemaining()){
-					game.newRound(Integer.parseInt(textRoundBet.getText()));
+				if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds()) {
+					//btnRoll.setText("Roll");
+					if(game.newRound()){
+						System.out.println("Button IF");
+						lblCurrentRound.setText("Round " + (game.getRound()-1));
+					}
+					else {
+						lblCurrentRound.setText("Winner " + game.getGameWinner(Integer.parseInt(textRoundBet.getText())).getName());
+						//btnRoll.setVisible(false);
+						btnContinue.setVisible(true);
+						//btnRoll.setText("Continue");
+						System.out.println("Button ELSE");
+					}
+					lblNamePlayerOne.setText(playerOne.getName());
+					lblNamePlayerTwo.setText(playerTwo.getName());
+					lblFundsPlayerOne.setText("$"+playerOne.getMoney());
+					lblFundsPlayerTwo.setText("$"+playerTwo.getMoney());
+					lblScorePlayerOne.setText(""+playerOne.getScore());
+					lblScorePlayerTwo.setText(""+playerTwo.getScore());
 				}
 				else {
-					//btnRoll.setVisible(false);
-					btnContinue.setVisible(true);				
+					btnRoll.setVisible(false);
+					btnContinue.setVisible(false);
 				}
-				lblNamePlayerOne.setText(playerOne.getName());
-				lblNamePlayerTwo.setText(playerTwo.getName());
-				lblFundsPlayerOne.setText("$"+playerOne.getMoney());
-				lblFundsPlayerTwo.setText("$"+playerTwo.getMoney());
-				lblScorePlayerOne.setText(""+playerOne.getScore());
-				lblScorePlayerTwo.setText(""+playerTwo.getScore());
 			}
 		});
 		
@@ -265,6 +273,7 @@ public class WindowGUI {
 				lblFundsPlayerTwo.setText("$"+playerTwo.getMoney());
 				lblScorePlayerOne.setText(""+playerOne.getScore());
 				lblScorePlayerTwo.setText(""+playerTwo.getScore());	
+				btnRoll.setVisible(true);
 			}
 		});
 		btnStart.setBounds(123, 239, 102, 22);
@@ -275,7 +284,5 @@ public class WindowGUI {
 		panelGame.add(panelCoin);
 		panelCoin.setVisible(false);
 	}
-
-	
-	}
+}
 

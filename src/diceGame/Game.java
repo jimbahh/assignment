@@ -64,18 +64,19 @@ public class Game {
 		}
 	}
 	
-	public void newRound(int bet) {
-		if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds()) {
-			if(currentRound <= numberOfRounds) {
+	public boolean newRound() {
+		//if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds()) {
+			if(hasRoundsRemaining()) {
 				System.out.println("Round "+currentRound + " of " + (numberOfRounds));
 				playerOne.roll(numberOfDice);
 				playerTwo.roll(numberOfDice);
 				currentRound ++;
+				return true;
 			}
 			else {
-				this.getGameWinner(bet);
+				return false;
 			}
-		}
+		//}
 	}
 	
 	public void setCurrentRound(int round) {
@@ -86,11 +87,17 @@ public class Game {
 		if (getRoundWinner()==playerOne) {
 			playerOne.setMoney(bet);
 			playerTwo.setMoney(bet*-1);
+			System.out.println("Win "+playerOne.getName());
+			System.out.println("P1: "+playerOne.getMoney());
+			System.out.println("P2: "+playerTwo.getMoney());
 			return playerOne;
 		}
 		else {
 			playerOne.setMoney(bet*-1);
 			playerTwo.setMoney(bet);
+			System.out.println("Win "+playerTwo.getName());
+			System.out.println("P1: "+playerOne.getMoney());
+			System.out.println("P2: "+playerTwo.getMoney());
 			return playerTwo;
 		}
 	}
