@@ -32,5 +32,12 @@ public class Test {
 		assertTrue(playerOne.thisRoundRolls.isEmpty());
 		assertTrue(playerTwo.thisRoundRolls.isEmpty());
 	}
+	
+	@org.junit.Test
+	public void coinFlipTest() {
+		playerOne.roundScore = 0;
+		playerTwo.roundScore = 0;
+		testGame.getRoundWinner();
+	}
 }
 
