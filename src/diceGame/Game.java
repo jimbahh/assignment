@@ -48,7 +48,7 @@ public class Game {
 	}
 	
 	public Player getRoundWinner() {
-		if (playerOne.getScore() == playerTwo.getScore()) {
+		if (playerOne.roundScore() == playerTwo.roundScore() && playerOne.roundScore() > 0) {
 			System.out.println("Round Draw Flipping Coin...");
 			if (coinFlip()) {
 				return playerOne;

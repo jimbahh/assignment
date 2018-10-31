@@ -7,6 +7,7 @@ public abstract class Player {
 	protected String name ="";
 	private int score = 0;
 	int money = 0;
+	int roundScore = 0;
 	//the ArrayList for ALL dice rolls, this is how it was before I got them to clear after each round, leaving just in case
 	//can be deleted later if not used
 	ArrayList<Integer> totalNumberList = new ArrayList<Integer>();
@@ -53,6 +54,15 @@ public abstract class Player {
 		return randomNumbers;
 		
 		
+	}
+	
+	//adds the values in the array together to get the score for the round
+	public int roundScore() {
+		int roundScore = 0;
+		for(Integer x : thisRoundRolls)
+		    roundScore += x;
+		System.out.println(name + " round score: " + roundScore);
+		return roundScore;
 	}
 	
 	//use this to empty numberLists after each round
