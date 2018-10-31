@@ -20,17 +20,17 @@ public class Test {
 	}
 	
 	
-	//tests thisRoundRolls are clearing and filling as intended
+	//tests thisRoundRolls are clearing and filling as intended, repeated 10 times
 	@org.junit.Test
 	@RepeatedTest(10)
 	public void listTest() {
+		testGame.newRound();
+		assertFalse(playerOne.thisRoundRolls.isEmpty());
+		assertFalse(playerTwo.thisRoundRolls.isEmpty());
 		playerOne.clearRolls();
 		playerTwo.clearRolls();
 		assertTrue(playerOne.thisRoundRolls.isEmpty());
 		assertTrue(playerTwo.thisRoundRolls.isEmpty());
-		testGame.newRound();
-		assertFalse(playerOne.thisRoundRolls.isEmpty());
-		assertFalse(playerTwo.thisRoundRolls.isEmpty());
 	}
 }
 
