@@ -8,6 +8,7 @@ public class Game {
 	private int numberOfDice = 2;
 	PlayerOne playerOne = PlayerOne.getInstance();
 	PlayerTwo playerTwo = PlayerTwo.getInstance();
+	WindowGUI gui = new WindowGUI();
 	
 	public Game() {
 		
@@ -50,6 +51,10 @@ public class Game {
 	public Player getRoundWinner() {
 		if (playerOne.roundScore() == playerTwo.roundScore() && playerOne.roundScore() > 0) {
 			System.out.println("Round Draw Flipping Coin...");
+			
+			//should make the gif appear only in the case of a tie
+			gui.coinImage();
+			
 			if (coinFlip()) {
 				return playerOne;
 			}

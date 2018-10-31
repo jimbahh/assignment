@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,7 +29,7 @@ public class WindowGUI {
 	private static Game game = new Game();
 	PlayerOne playerOne = PlayerOne.getInstance();
 	PlayerTwo playerTwo = PlayerTwo.getInstance();
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -278,16 +279,21 @@ public class WindowGUI {
 		});
 		btnStart.setBounds(123, 239, 102, 22);
 		panelMain.add(btnStart);
-					
+	}
+		
+	public void coinImage() {
+		//called from Game.getRoundWinner()
 		JPanel panelCoin = new JPanel();
 		panelCoin.setBounds(157, 53, 135, 129);
-		panelGame.add(panelCoin);
-		if (playerOne.getScore()==playerTwo.getScore()) {
-			game.getRoundWinner();
-			panelCoin.setVisible(true);
-		} else {
-			panelCoin.setVisible(false);
+		this.frame.add(panelCoin);
+		ImageIcon coinGif = new ImageIcon(getClass().getResource("coinflip.gif"));
+		JLabel coinLabel = new JLabel(coinGif);
+		panelCoin.add(coinLabel);
+		panelCoin.setVisible(true);
+		coinLabel.setVisible(true);	}
+
+	
 		}
-	}
-}
+	
+
 

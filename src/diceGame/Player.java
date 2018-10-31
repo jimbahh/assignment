@@ -61,7 +61,6 @@ public abstract class Player {
 		int roundScore = 0;
 		for(Integer x : thisRoundRolls)
 		    roundScore += x;
-		System.out.println(name + " round score: " + roundScore);
 		return roundScore;
 	}
 	
