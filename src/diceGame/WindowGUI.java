@@ -278,11 +278,16 @@ public class WindowGUI {
 		});
 		btnStart.setBounds(123, 239, 102, 22);
 		panelMain.add(btnStart);
-		
+					
 		JPanel panelCoin = new JPanel();
 		panelCoin.setBounds(157, 53, 135, 129);
 		panelGame.add(panelCoin);
-		panelCoin.setVisible(false);
+		if (playerOne.getScore()==playerTwo.getScore()) {
+			game.getRoundWinner();
+			panelCoin.setVisible(true);
+		} else {
+			panelCoin.setVisible(false);
+		}
 	}
 }
 

@@ -32,7 +32,8 @@ public class Game {
 	}
 		
 	public boolean hasRoundsRemaining() {
-		if (currentRound > numberOfRounds) {
+		if (currentRound > numberOfRounds)
+		{
 			return false;
 		}
 		return true;
@@ -67,9 +68,14 @@ public class Game {
 	public boolean newRound() {
 		//if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds()) {
 			if(hasRoundsRemaining()) {
+				playerOne.clearRolls();
+				playerTwo.clearRolls();
 				System.out.println("Round "+currentRound + " of " + (numberOfRounds));
 				playerOne.roll(numberOfDice);
 				playerTwo.roll(numberOfDice);
+				System.out.println("Player 1 dice: " + playerOne.thisRoundRolls);
+				System.out.println("Player 2 dice: " + playerTwo.thisRoundRolls);
+				
 				currentRound ++;
 				return true;
 			}
