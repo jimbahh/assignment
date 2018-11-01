@@ -15,9 +15,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
 public class WindowGUI {
-
+	
 	//WindowGUI Variables
-	private JFrame frame;
+	private static JFrame frame = new JFrame();
 	private static Game game = new Game();
 	PlayerOne playerOne = PlayerOne.getInstance();
 	PlayerTwo playerTwo = PlayerTwo.getInstance();
@@ -49,8 +49,10 @@ public class WindowGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WindowGUI window = new WindowGUI();
-					window.frame.setVisible(true);
+					//WindowGUI.frame.setVisible(true);
+					//frame.setLocationRelativeTo(null);
+					new WindowGUI();
+					WindowGUI.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -294,7 +296,7 @@ public class WindowGUI {
 		//called from Game.getRoundWinner()
 		JPanel panelCoin = new JPanel();
 		panelCoin.setBounds(157, 53, 135, 129);
-		this.frame.add(panelCoin);
+		WindowGUI.frame.add(panelCoin);
 		ImageIcon coinGif = new ImageIcon(getClass().getResource("coinflip.gif"));
 		JLabel coinLabel = new JLabel(coinGif);
 		panelCoin.add(coinLabel);
