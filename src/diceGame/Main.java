@@ -22,7 +22,7 @@ public class Main {
 					
 		while(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds() && game.hasRoundsRemaining()) {
 			game.newRound();
-			System.out.println("Winner is " + game.getGameWinner(100).getName());
+			System.out.println("Winner is " + game.getBetWinner(100).getName());
 			System.out.println("p1 " + playerOne.getMoney());
 			System.out.println("p2 " + playerTwo.getMoney());
 		}

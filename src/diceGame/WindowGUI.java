@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+//import java.awt.Window;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -19,8 +21,8 @@ public class WindowGUI {
 	//WindowGUI Variables
 	private static JFrame frame = new JFrame();
 	private static Game game = new Game();
-	PlayerOne playerOne = PlayerOne.getInstance();
-	PlayerTwo playerTwo = PlayerTwo.getInstance();
+	static PlayerOne playerOne = PlayerOne.getInstance();
+	static PlayerTwo playerTwo = PlayerTwo.getInstance();
 	
 	//Main Menu Panel Variables
 	private JTextField txtPlayerOneName;
@@ -35,7 +37,8 @@ public class WindowGUI {
 	JComboBox<Integer> comboBoxRounds;
 	
 	//Game Panel Variables
-	JPanel panelGame;
+	static JPanel panelGame;
+	static JPanel panelCoin = new JPanel();
 	JLabel lblNamePlayerOne;
 	JLabel lblNamePlayerTwo;
 	JLabel lblFundsPlayerOne;
@@ -49,8 +52,6 @@ public class WindowGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//WindowGUI.frame.setVisible(true);
-					//frame.setLocationRelativeTo(null);
 					new WindowGUI();
 					WindowGUI.frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
@@ -203,7 +204,6 @@ public class WindowGUI {
 		panelGame.add(textRoundBet);
 		textRoundBet.setColumns(10);
 		
-		
 		JButton btnQuit = new JButton("Quit");
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -217,6 +217,7 @@ public class WindowGUI {
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				coinImageOff();
 				playerOne.resetScore();
 				playerTwo.resetScore();
 				game.setCurrentRound(1);
@@ -234,11 +235,12 @@ public class WindowGUI {
 		JButton btnRoll = new JButton("Roll");
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				coinImageOff();
 				if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds()) {
 					
 					if (game.getRounds()==game.getRound()){
 						game.newRound();
-						lblCurrentRound.setText("Round Over! Winner: " + game.getGameWinner(Integer.parseInt(textRoundBet.getText())).getName());
+						lblCurrentRound.setText("Round Over! Winner: " + game.getBetWinner(Integer.parseInt(textRoundBet.getText())).getName());
 						btnContinue.setVisible(true);
 						System.out.println("Button ELSE");
 					}
@@ -257,6 +259,7 @@ public class WindowGUI {
 		
 		btnRoll.setBounds(131, 237, 89, 23);
 		panelGame.add(btnRoll);
+		
 
 		btnStart.addActionListener(new ActionListener() {
 			//START BUTTON This will update the players names, money and create a new game based on the combo box selections
@@ -292,19 +295,6 @@ public class WindowGUI {
 		this.initializeMainMenu();
 		this.initializeGameMenu();
 	}
-		
-	public static void coinImage() {
-		//called from Game.getRoundWinner()
-		JPanel panelCoin = new JPanel();
-		panelCoin.setBounds(157, 53, 135, 129);
-		WindowGUI.frame.add(panelCoin);
-		//ImageIcon coinGif = new ImageIcon(WindowGUI.getResource("coinflip.gif"));
-		ImageIcon coinGif = new ImageIcon(WindowGUI.class.getResource("coinflip.gif"));
-		JLabel coinLabel = new JLabel(coinGif);
-		panelCoin.add(coinLabel);
-		panelCoin.setVisible(true);
-		coinLabel.setVisible(true);	
-	}
 	
 	//Updates Labels in Game Panel to match players values
 	public void refreshGameLabels() {
@@ -315,4 +305,38 @@ public class WindowGUI {
 		lblScorePlayerOne.setText(""+playerOne.getScore());
 		lblScorePlayerTwo.setText(""+playerTwo.getScore());
 	}
+		
+	public static void coinImage() {
+		panelCoin.setBounds(157, 53, 135, 129);
+		WindowGUI.frame.add(panelCoin);
+		ImageIcon coinGif = new ImageIcon(WindowGUI.class.getResource("coinflip.gif"));
+		JLabel coinLabel = new JLabel(coinGif);
+		panelCoin.add(coinLabel);
+		panelCoin.setVisible(true);
+		coinLabel.setVisible(true);	
+	}
+	
+	public static void coinImageOff() {
+		panelCoin.setVisible(false);	
+	}
+	
+		
+	/*public static void coinButton() {
+		JButton btnCoin = new JButton("Flip a Coin!");
+		btnCoin.setVisible(true);
+		btnCoin.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent x) {
+				coinImage();
+			}
+			
+		});
+				
+		
+		btnCoin.setBounds(131, 237, 89, 23);
+		panelGame.add(btnCoin);
+		}
+*/
 }
+		
+	

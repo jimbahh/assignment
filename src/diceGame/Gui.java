@@ -139,7 +139,7 @@ public class Gui {
 				}
 				else {
 					btnRoll.setText("Next Game");
-					mainText.setText("Game Winner is" + game.getGameWinner(Integer.parseInt(txtBetAmount.getText())).getName());
+					mainText.setText("Game Winner is" + game.getBetWinner(Integer.parseInt(txtBetAmount.getText())).getName());
 					game = new Game(game.getRounds(), game.getDice()+1, playerOne, playerTwo);
 					playerOne.resetScore();
 					playerTwo.resetScore();

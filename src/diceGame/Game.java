@@ -47,10 +47,9 @@ public class Game {
 		return false;
 	}
 	
-	public Player getRoundWinner() {
+	public Player getGameWinner() {
 			if (playerOne.getScore() == playerTwo.getScore() && playerOne.getScore() > 0) {
 			System.out.println("Draw! Flipping Coin...");
-			//should make the gif appear only in the case of a tie
 			WindowGUI.coinImage();
 			
 			if (coinFlip()) {
@@ -78,7 +77,7 @@ public class Game {
 				System.out.println("Player 2 dice: " + playerTwo.thisRoundRolls);
 				playerOne.getRoundScore();
 				playerTwo.getRoundScore();
-				getRoundWinner();
+				getGameWinner();
 				playerOne.clearRoundScore();
 				playerTwo.clearRoundScore();
 				currentRound ++;
@@ -94,8 +93,8 @@ public class Game {
 		this.currentRound = round;
 	}
 	
-	public Player getGameWinner(int bet) {
-		if (getRoundWinner()==playerOne) {
+	public Player getBetWinner(int bet) {
+		if (getGameWinner()==playerOne) {
 			playerOne.setMoney(bet);
 			playerTwo.setMoney(bet*-1);
 			System.out.println("Win "+playerOne.getName());
