@@ -47,9 +47,8 @@ public class Game {
 		return false;
 	}
 	
-	public Player getGameWinner() {
+	public Player getWinner() {
 			if (playerOne.getScore() == playerTwo.getScore() && playerOne.getScore() > 0) {
-			System.out.println("Draw! Flipping Coin...");
 			WindowGUI.coinImage();
 			
 			if (coinFlip()) {
@@ -75,9 +74,6 @@ public class Game {
 				playerTwo.roll(numberOfDice);
 				System.out.println("Player 1 dice: " + playerOne.thisRoundRolls);
 				System.out.println("Player 2 dice: " + playerTwo.thisRoundRolls);
-				playerOne.getRoundScore();
-				playerTwo.getRoundScore();
-				getGameWinner();
 				playerOne.clearRoundScore();
 				playerTwo.clearRoundScore();
 				currentRound ++;
@@ -94,7 +90,7 @@ public class Game {
 	}
 	
 	public Player getBetWinner(int bet) {
-		if (getGameWinner()==playerOne) {
+		if (getWinner()==playerOne) {
 			playerOne.setMoney(bet);
 			playerTwo.setMoney(bet*-1);
 			System.out.println("Win "+playerOne.getName());
