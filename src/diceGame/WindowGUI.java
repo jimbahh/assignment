@@ -53,6 +53,7 @@ public class WindowGUI {
 					//frame.setLocationRelativeTo(null);
 					new WindowGUI();
 					WindowGUI.frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -237,7 +238,7 @@ public class WindowGUI {
 					
 					if (game.getRounds()==game.getRound()){
 						game.newRound();
-						lblCurrentRound.setText("Round Over Winner " + game.getGameWinner(Integer.parseInt(textRoundBet.getText())).getName());
+						lblCurrentRound.setText("Round Over! Winner: " + game.getGameWinner(Integer.parseInt(textRoundBet.getText())).getName());
 						btnContinue.setVisible(true);
 						System.out.println("Button ELSE");
 					}
@@ -292,12 +293,13 @@ public class WindowGUI {
 		this.initializeGameMenu();
 	}
 		
-	public void coinImage() {
+	public static void coinImage() {
 		//called from Game.getRoundWinner()
 		JPanel panelCoin = new JPanel();
 		panelCoin.setBounds(157, 53, 135, 129);
 		WindowGUI.frame.add(panelCoin);
-		ImageIcon coinGif = new ImageIcon(getClass().getResource("coinflip.gif"));
+		//ImageIcon coinGif = new ImageIcon(WindowGUI.getResource("coinflip.gif"));
+		ImageIcon coinGif = new ImageIcon(WindowGUI.class.getResource("coinflip.gif"));
 		JLabel coinLabel = new JLabel(coinGif);
 		panelCoin.add(coinLabel);
 		panelCoin.setVisible(true);

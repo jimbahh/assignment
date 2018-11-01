@@ -8,9 +8,9 @@ public abstract class Player {
 	private int score = 0;
 	int money = 0;
 	int roundScore = 0;
-	//the ArrayList for ALL dice rolls, this is how it was before I got them to clear after each round, leaving just in case
-	//can be deleted later if not used
-	ArrayList<Integer> totalNumberList = new ArrayList<Integer>();
+	//the ArrayList for ALL dice rolls, probably best to be deleted at some stage lol
+	//ArrayList<Integer> totalNumberList = new ArrayList<Integer>();
+	
 	//the ArrayList for THIS ROUND'S dice rolls, cleared after each round
 	ArrayList<Integer> thisRoundRolls = new ArrayList<Integer>();
 
@@ -33,7 +33,7 @@ public abstract class Player {
 	}
 	
 	public void roll(int diceNumber) {
-		System.out.println(diceNumber + " dice rolled by " + name);
+		System.out.println(diceNumber + " dice rolled by " + name + ":");
 		for (int i = 0; i < diceNumber; i++) {
 			this.score += diceRoll();
 		
@@ -42,13 +42,10 @@ public abstract class Player {
 		
 	int diceRoll() {
 		Random roll = new Random();
-		//making the roll an int makes it possible to add to ArrayList, 
-		//which makes the numbers accessable anywhere with playerX.numberList OR playerX.randomNumbers
+		//making the roll an int makes it possible to add the same Random value to an ArrayList
 		int randomNumbers = roll.nextInt(6)+1;
 		
-		//adds each value of each dice for each player to an arrayList, then prints to console
-	
-		totalNumberList.add(randomNumbers);
+		//adds each value of each dice for each player to an arrayList, then prints to console	//totalNumberList.add(randomNumbers);
 		thisRoundRolls.add(randomNumbers);
 		System.out.println(name + " rolled " + randomNumbers);
 		return randomNumbers;
@@ -57,16 +54,20 @@ public abstract class Player {
 	}
 	
 	//adds the values in the array together to get the score for the round
-	public int roundScore() {
-		int roundScore = 0;
+	//initializing the int to 0 made the scores always empty hahahahahaha.
+	public int getRoundScore() {		
 		for(Integer x : thisRoundRolls)
 		    roundScore += x;
+	//System.out.println(name +" Round Score: " + this.roundScore);
 		return roundScore;
 	}
 	
-	//use this to empty numberLists after each round
-	public void clearRolls () {
+
+	
+	//use this to empty thisRoundRolls AND roundscore after each round
+	public void clearRoundScore () {
 		thisRoundRolls.clear();
+		roundScore = 0;
 	}
 	
 

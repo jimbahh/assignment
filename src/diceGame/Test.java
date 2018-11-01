@@ -1,17 +1,23 @@
 package diceGame;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.RepeatedTest;
+
+//import static org.junit.Assert.*;
+
+//import org.junit.jupiter.api.RepeatedTest;
 
 public class Test {
 	PlayerOne playerOne = PlayerOne.getInstance();
 	PlayerTwo playerTwo = PlayerTwo.getInstance();
+	
 	Game testGame = new Game();
 	
 	//tests that each dice gives a value of 1-6, does so 10 times
-	@org.junit.Test
-	@RepeatedTest(10)
+	/*	@org.junit.Test
+	@RepeatedTest(1)
 	public void sixSidedDiceTest() {
 			int diceroll1 = playerOne.diceRoll();
 			int diceroll2 = playerTwo.diceRoll();
@@ -32,12 +38,21 @@ public class Test {
 		assertTrue(playerOne.thisRoundRolls.isEmpty());
 		assertTrue(playerTwo.thisRoundRolls.isEmpty());
 	}
-	
+	*/
 	@org.junit.Test
-	public void coinFlipTest() {
-		playerOne.roundScore = 0;
-		playerTwo.roundScore = 0;
-		testGame.getRoundWinner();
+	@RepeatedTest(5)
+	public void roundScoreTest() {
+	playerOne.diceRoll();
+	playerTwo.diceRoll();
+	System.out.println("P1: " + playerOne.thisRoundRolls);
+	System.out.println("P2: " +playerTwo.thisRoundRolls);
+	playerOne.getRoundScore();
+	playerTwo.getRoundScore();
+		System.out.println("Clearing round scores....");
+	playerOne.clearRoundScore();
+	playerTwo.clearRoundScore();
+	assertEquals(0, playerOne.randomNumbers);
+	assertEquals(0, playerTwo.randomNumbers);
 	}
 }
 
