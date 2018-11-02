@@ -10,41 +10,48 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JFrame;
-import javax.swing.ImageIcon;
 
-
-public class MainMenu extends Frame {
+public class MainMenu extends Menu {
+	
 	//Main Menu Panel Variables
-	private JTextField txtPlayerOneName;
-	private JTextField txtPlayerTwoName;
-	private JTextField txtStartingFunds;
-	private static JButton btnStart = new JButton("Start");
-	JButton btnExit = new JButton("Exit");
+	protected static JTextField txtPlayerOneName;
+	protected static JTextField txtPlayerTwoName;
+	protected static JTextField txtStartingFunds;
+	protected static JButton btnStart = new JButton("Start");
+	static JButton btnExit = new JButton("Exit");
 	private static String[] diceNumbers = {"1", "2", "3", "4", "5"};
 	private static Integer[] roundNumbers = {1, 3, 5};
-	private JPanel panelMain = new JPanel();
-	JComboBox<String> comboBoxDice = new JComboBox<String>(diceNumbers);
-	JComboBox<Integer> comboBoxRounds = new JComboBox<Integer>(roundNumbers);
+	protected static JPanel panelMain = new JPanel();
+	static JComboBox<String> comboBoxDice = new JComboBox<String>(diceNumbers);
+	static JComboBox<Integer> comboBoxRounds = new JComboBox<Integer>(roundNumbers);
 	//DefaultComboBoxModel<String> comboModel = new DefaultComboBoxModel<String>(diceNumbers);
 	//@SuppressWarnings({ "rawtypes", "unchecked" })
 	//JComboBox comboBoxDice = new JComboBox(comboModel);
 	//DefaultComboBoxModel<Integer> comboModel1 = new DefaultComboBoxModel<Integer>(roundNumbers);
 	//@SuppressWarnings({ "unchecked", "rawtypes" })
 	//JComboBox comboBoxRounds= new JComboBox(comboModel);
+
 	
 	//M
-	 void initializeMainMenu() {
+	 static void initializeMainMenu() {
 			panelMain.setBounds(0, 0, 434, 271);
 			panelMain.setLayout(null);
 			panelMain.setVisible(true);
-			frame.getContentPane().add(panelMain);
+			frame.add(panelMain);
 	 }
+	 
+	static void menuVisible() {
+			panelMain.setVisible(true);
+		}
+		
+	static void menuInvisible() {
+			panelMain.setVisible(false);
+		}
 
 		
 		
 	 //M
-	 void initializeLblDiceGame() {
+	static void initializeLblDiceGame() {
 		lblDiceGame.setBounds(0, 11, 434, 25);
 		lblDiceGame.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDiceGame.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -52,7 +59,7 @@ public class MainMenu extends Frame {
 	}
 	 
 	//M
-	 void initializePlayerNameLabels() {
+	static void initializePlayerNameLabels() {
 		JLabel lblPlayerOneName = new JLabel("Player 1 Name:");
 		lblPlayerOneName.setBounds(97, 52, 99, 14);
 		panelMain.add(lblPlayerOneName);
@@ -63,28 +70,28 @@ public class MainMenu extends Frame {
 	}
 	 
 	 //M
-	 void initializeNumberDiceLbl() {
+	static void initializeNumberDiceLbl() {
 	JLabel lblNumberOfDice = new JLabel("Number of Dice:");
 		lblNumberOfDice.setBounds(97, 121, 123, 14);
 		panelMain.add(lblNumberOfDice);
 	}
 	 
 	//M
-	 void initializeNumberRoundsLbl() {
+	static void initializeNumberRoundsLbl() {
 		JLabel lblNumberOfRounds = new JLabel("Number of Rounds:");
 		lblNumberOfRounds.setBounds(97, 146, 123, 14);
 		panelMain.add(lblNumberOfRounds);
 	}
 	
 	 //M
-	 void initializeStartMoneyLbl() {
+	static void initializeStartMoneyLbl() {
 		JLabel lblPlayerStartingMoney = new JLabel("Player starting Money:");
 		lblPlayerStartingMoney.setBounds(97, 185, 155, 14);
 		panelMain.add(lblPlayerStartingMoney);
 	}
 	
 	 //M
-	 void initializeNameTxts() {
+	static void initializeNameTxts() {
 		txtPlayerOneName = new JTextField();
 		txtPlayerOneName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPlayerOneName.setText("Player 1");
@@ -100,21 +107,21 @@ public class MainMenu extends Frame {
 	}
 	
 	 //M
-	 void initializeComboBoxDice() {
+	static void initializeComboBoxDice() {
 		comboBoxDice.setSelectedIndex(1);
 		comboBoxDice.setBounds(242, 118, 40, 20);
 		panelMain.add(comboBoxDice);
 	}
 	
 	 //M
-	 void initializeComboBoxRounds() {
+	static void initializeComboBoxRounds() {
 		comboBoxRounds.setSelectedIndex(1);
 		comboBoxRounds.setBounds(242, 143, 40, 20);
 		panelMain.add(comboBoxRounds);
 	}
 	
 	 //M
-	 void initializeStartingMoneyTxt() {
+	static void initializeStartingMoneyTxt() {
 		txtStartingFunds = new JTextField();
 		txtStartingFunds.setHorizontalAlignment(SwingConstants.CENTER);
 		txtStartingFunds.setText("100");
@@ -124,12 +131,12 @@ public class MainMenu extends Frame {
 	}
 	
 	 //M
-	 void initializebtnExit() {
+	static void initializebtnExit() {
 		btnExit.setBounds(230, 239, 99, 22);
 		panelMain.add(btnExit);
 	}
 		//<
-	 void btnExit() {
+	 static void btnExit() {
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -138,17 +145,17 @@ public class MainMenu extends Frame {
 	}
 	
 	 //M
-	 void initializeStartBtn() {
+	static void initializeStartBtn() {
 		btnStart.setBounds(123, 239, 102, 22);
 		panelMain.add(btnStart);
 	}
 	 
 	//M
-	void btnStart() {
+	static void btnStart() {
 		btnStart.addActionListener(new ActionListener() {
 			//START BUTTON This will update the players names, money and create a new game based on the combo box selections
 			public void actionPerformed(ActionEvent e) {
-				panelGame.setVisible(true);
+				GameMenu.gameVisible();
 				panelMain.setVisible(false);
 				playerOne.name = txtPlayerOneName.getText();
 				playerOne.money = Integer.parseInt(txtStartingFunds.getText());
@@ -156,7 +163,7 @@ public class MainMenu extends Frame {
 				playerTwo.money = Integer.parseInt(txtStartingFunds.getText());
 				game = new Game(Integer.parseInt(comboBoxRounds.getSelectedItem().toString()), comboBoxDice.getSelectedIndex()+1, playerOne, playerTwo);
 				refreshGameLabels();
-				btnRoll.setVisible(true);
+				GameMenu.btnRoll.setVisible(true);
 			}
 		});
 		
@@ -164,7 +171,7 @@ public class MainMenu extends Frame {
 	
 //M
 	//Updates Labels in Game Panel to match players values
-	void refreshGameLabels() {
+	static void refreshGameLabels() {
 		lblNamePlayerOne.setText(playerOne.getName());
 		lblNamePlayerTwo.setText(playerTwo.getName());
 		lblFundsPlayerOne.setText("$"+playerOne.getMoney());

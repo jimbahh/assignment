@@ -1,24 +1,15 @@
 package diceGame;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
-public abstract class Frame {
-	static JFrame frame = new JFrame();
-	static Game game = new Game();
-	static PlayerOne playerOne = PlayerOne.getInstance();
-	static PlayerTwo playerTwo = PlayerTwo.getInstance();
-	JLabel lblNamePlayerOne;
-	JLabel lblNamePlayerTwo;
-	JLabel lblFundsPlayerOne;
-	JLabel lblFundsPlayerTwo;
-	JLabel lblScorePlayerOne;
-	JLabel lblScorePlayerTwo;
-	static JLabel lblDiceGame = new JLabel("New Game");		
-
-
+public class Frame {
+	private static JFrame frame = new JFrame();
+	
+	public static JFrame getInstance() {
+        return frame;
+}
 	//Initialize the contents of the frame
-	void initializeFrame() {
+	static void initializeFrame() {
 		frame.setTitle("I Can't Wait To Dice!");
 		frame.setBounds(100, 100, 450, 310);
 		frame.setResizable(false);
@@ -27,10 +18,7 @@ public abstract class Frame {
 		
 	}
 
-	static void setVisible() {
-		frame.setVisible(true);
-	}
-	static void setInvisible() {
+	static void frameVisible() {
 		frame.setVisible(true);
 	}
 

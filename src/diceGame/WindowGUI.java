@@ -2,11 +2,18 @@ package diceGame;
 
 import java.awt.EventQueue;
 
+import javax.swing.JFrame;
+
 
 
 public class WindowGUI {
 	
-	//WindowGUI Variables
+	private static WindowGUI gui = new WindowGUI();
+	static JFrame frame = Frame.getInstance();
+	
+	public static WindowGUI getInstance() {
+	        return gui;
+	}
 
 	
 	//Launches the App
@@ -14,9 +21,9 @@ public class WindowGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new WindowGUI();
-					Frame.setVisible();
-					Frame.setLocationRelativeTo();
+					getInstance();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -25,41 +32,45 @@ public class WindowGUI {
 	}
 
 	//Creates the Window
-//	public WindowGUI() {
-	//	initialize();
-//	}
-	
-	/*private void initialize() {
-		this.initializeFrame();
-		this.initializeMainMenu();
-		this.initializeGameMenu();
-		this.initializeNameLabels();
-		this.initializeFundLabels();
-		this.initializeScoreLabels();
-		this.initializeCurrentRoundLbl();
-		this.initializeBetLabel();
-		this.initializeBtnQuit();
-		this.initializeBtnContinue();
-		this.initializeRollBtn();
-		this.initializeRoundBetLbl();
-		this.initializeLblDiceGame();
-		this.initializePlayerNameLabels();
-		this.initializeNumberDiceLbl();
-		this.initializeNumberRoundsLbl();
-		this.initializeStartMoneyLbl();
-		this.initializeNameTxts();
-		this.initializeComboBoxDice();
-		this.initializeComboBoxRounds();
-		this.initializeStartingMoneyTxt();
-		this.initializeStartBtn();
-		this.initializebtnExit();
-		this.btnRoll();
-		this.btnQuit();
-		this.btnContinue();
-		this.btnStart();
-		this.btnExit();
+	public WindowGUI() {
+		initialize();
 	}
-	*/
+	
+	private void initialize() {
+		Frame.initializeFrame();
+		MainMenu.initializeMainMenu();
+		MainMenu.initializeLblDiceGame();
+		MainMenu.initializePlayerNameLabels();
+		MainMenu.initializeNumberDiceLbl();
+		MainMenu.initializeNumberRoundsLbl();
+		MainMenu.initializeStartMoneyLbl();
+		MainMenu.initializeNameTxts();
+		MainMenu.initializeComboBoxDice();
+		MainMenu.initializeComboBoxRounds();
+		MainMenu.initializeStartingMoneyTxt();
+		MainMenu.initializeStartBtn();
+		MainMenu.initializebtnExit();
+		MainMenu.btnStart();
+		MainMenu.btnExit();
+		
+		GameMenu.initializeGameMenu();
+		GameMenu.initializeNameLabels();
+		GameMenu.initializeFundLabels();
+		GameMenu.initializeScoreLabels();
+		GameMenu.initializeCurrentRoundLbl();
+		GameMenu.initializeBetLabel();
+		GameMenu.initializeBtnQuit();
+		GameMenu.initializeBtnContinue();
+		GameMenu.initializeRollBtn();
+		GameMenu.initializeRoundBetLbl();
+		GameMenu.btnRoll();
+		GameMenu.btnQuit();
+		GameMenu.btnContinue();
+		
+		
+		
+	}
+	
 }
 		
 	

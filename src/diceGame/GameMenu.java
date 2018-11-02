@@ -10,41 +10,38 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JFrame;
 
-import javax.swing.JComboBox;
-
-
-public class GameMenu extends Frame {
+public class GameMenu extends Menu {
 	//Game Panel Variables
 	static JPanel panelGame = new JPanel();
 	static JPanel panelCoin = new JPanel();
-	JButton btnRoll = new JButton("Roll");
-	JButton btnQuit = new JButton("Quit");
-	JButton btnContinue = new JButton("Continue");
+	static JButton btnRoll = new JButton("Roll");
+	static JButton btnQuit = new JButton("Quit");
+	static JButton btnContinue = new JButton("Continue");
 	static JLabel lblCurrentRound = new JLabel();
 	static JLabel lblDraw = new JLabel("Draw! Flipping a coin!");
 	static JLabel lblRoundBet = new JLabel("Round Bet:");
-	private JTextField textRoundBet;
+	public static JTextField textRoundBet;
 
-	void gameVisible() {
-		panelGame.setVisible(true);
-	}
-	
-	void gameInvisible() {
-		panelGame.setVisible(false);
-	}
+	static void gameVisible() {
+			panelGame.setVisible(true);
+		}
+		
+	static void gameInvisible() {
+			panelGame.setVisible(false);
+		}
 	
 	//G
-		 void initializeGameMenu() {
+	
+	static void initializeGameMenu() {
 			panelGame.setBounds(0, 0, 434, 271);
 			frame.getContentPane().add(panelGame);
 			panelGame.setLayout(null);
-			gameInvisible();
+			gameVisible();
 			}
 		 
 		//G
-		 void initializeNameLabels() {		
+	static void initializeNameLabels() {		
 			lblNamePlayerOne = new JLabel("");
 			lblNamePlayerOne.setFont(new Font("Tahoma", Font.BOLD, 11));
 			lblNamePlayerOne.setHorizontalAlignment(SwingConstants.LEFT);
@@ -58,7 +55,7 @@ public class GameMenu extends Frame {
 			panelGame.add(lblNamePlayerTwo);
 		}
 		//G
-		 void initializeFundLabels() {		
+	static void initializeFundLabels() {		
 			lblFundsPlayerOne = new JLabel("");
 			lblFundsPlayerOne.setBounds(10, 52, 46, 14);
 			panelGame.add(lblFundsPlayerOne);
@@ -70,7 +67,7 @@ public class GameMenu extends Frame {
 		}
 			
 		//G
-		 void initializeScoreLabels() {
+	static void initializeScoreLabels() {
 			lblScorePlayerOne = new JLabel("0");
 			lblScorePlayerOne.setBounds(10, 77, 46, 14);
 			panelGame.add(lblScorePlayerOne);
@@ -82,7 +79,7 @@ public class GameMenu extends Frame {
 		}
 		 
 		//G
-		 void initializeCurrentRoundLbl() {
+	static void initializeCurrentRoundLbl() {
 			
 			lblCurrentRound.setHorizontalAlignment(SwingConstants.CENTER);
 			lblCurrentRound.setBounds(10, 0, 414, 25);
@@ -90,12 +87,12 @@ public class GameMenu extends Frame {
 		}
 		 
 		//G
-		 void initializeBetLabel() {
+	static void initializeBetLabel() {
 			lblRoundBet.setBounds(143, 241, 95, 14);
 		}
 		
 		 //G
-		void initializeRoundBetLbl() {
+	static void initializeRoundBetLbl() {
 			panelGame.add(lblRoundBet);
 			textRoundBet = new JTextField();
 			textRoundBet.setHorizontalAlignment(SwingConstants.CENTER);
@@ -106,29 +103,29 @@ public class GameMenu extends Frame {
 		}
 		
 		//G	
-		void initializeBtnQuit() {
+	static void initializeBtnQuit() {
 			btnQuit.setBounds(335, 237, 89, 23);
 			panelGame.add(btnQuit);
 		}
 		
 		//G
-		 void btnQuit() {
+	static void btnQuit() {
 			btnQuit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					panelGame.setVisible(false);
-					panelMain.setVisible(true);
+					MainMenu.menuVisible();
 				}
 			});
 		}
 		 //G
-		 void initializeBtnContinue() {
+	static void initializeBtnContinue() {
 			btnContinue.setBounds(10, 237, 89, 23);
 			panelGame.add(btnContinue);
 			btnContinue.setVisible(false);
 		}
 		
 		 //G
-		 void btnContinue() {
+	static void btnContinue() {
 			btnContinue.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					coinOff();
@@ -136,7 +133,7 @@ public class GameMenu extends Frame {
 					playerTwo.resetScore();
 					game.setCurrentRound(1);
 					//btnRoll.setVisible(true);
-					refreshGameLabels();
+					MainMenu.refreshGameLabels();
 					btnContinue.setVisible(false);	
 					System.out.println("Button CONTINUE");
 				}
@@ -144,13 +141,13 @@ public class GameMenu extends Frame {
 		}
 		
 		 //G
-		 void initializeRollBtn()	{
+	static void initializeRollBtn()	{
 			btnRoll.setBounds(10, 237, 89, 23);
 			panelGame.add(btnRoll);	
 				}
 			
 		//G
-		 void btnRoll() {
+	static void btnRoll() {
 			btnRoll.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds()) {
@@ -165,7 +162,7 @@ public class GameMenu extends Frame {
 							System.out.println("Button IF");
 							lblCurrentRound.setText("Round " + (game.getRound()-1));
 						}
-						refreshGameLabels();
+						MainMenu.refreshGameLabels();
 					}
 					else {
 						btnRoll.setVisible(false);
@@ -179,8 +176,8 @@ public class GameMenu extends Frame {
 			 static void coinImage() {
 				lblDraw();
 				panelCoin.setBounds(157, 53, 135, 129);
-				Frame.getContentPane().add(panelCoin);
-				ImageIcon coinGif = new ImageIcon(WindowGUI.class.getResource("coinflip.gif"));
+				panelGame.add(panelCoin);
+				ImageIcon coinGif = new ImageIcon(GameMenu.class.getResource("coinflip.gif"));
 				JLabel coinLabel = new JLabel(coinGif);
 				panelCoin.add(coinLabel);
 				panelCoin.setVisible(true);
@@ -205,4 +202,4 @@ public class GameMenu extends Frame {
 			}
 			
 		}
-}
+
