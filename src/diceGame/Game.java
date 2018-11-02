@@ -74,8 +74,6 @@ public class Game {
 				playerTwo.roll(numberOfDice);
 				System.out.println("Player 1 dice: " + playerOne.thisRoundRolls);
 				System.out.println("Player 2 dice: " + playerTwo.thisRoundRolls);
-				playerOne.clearRoundScore();
-				playerTwo.clearRoundScore();
 				currentRound ++;
 				return true;
 			}
