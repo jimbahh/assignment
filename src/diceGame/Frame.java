@@ -14,16 +14,9 @@ public class Frame {
 		frame.setBounds(100, 100, 450, 310);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-	}
-
-	static void frameVisible() {
+		frame.getContentPane().setLayout(null);		
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-
-	static void setLocationRelativeTo() {
-		frame.setLocationRelativeTo(null);
-		
-	}
-	
 }
+

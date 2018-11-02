@@ -1,11 +1,8 @@
 package diceGame;
 
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-
-//
 public abstract class Menu {
 	static Game game = new Game();
 	static JFrame frame = Frame.getInstance();

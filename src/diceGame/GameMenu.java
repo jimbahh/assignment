@@ -46,16 +46,14 @@ public class GameMenu extends Menu {
 			panelGame.setVisible(false);
 		}
 	
-	//G
-	
+	 
 	static void initializeGameMenu() {
 			panelGame.setBounds(0, 0, 434, 271);
 			frame.getContentPane().add(panelGame);
 			panelGame.setLayout(null);
 			gameInvisible();
 			}
-		 
-		//G
+		  
 	static void initializeNameLabels() {		
 			lblNamePlayerOne = new JLabel("");
 			lblNamePlayerOne.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -69,7 +67,7 @@ public class GameMenu extends Menu {
 			lblNamePlayerTwo.setBounds(335, 27, 89, 14);
 			panelGame.add(lblNamePlayerTwo);
 		}
-		//G
+		 
 	static void initializeFundLabels() {		
 			lblFundsPlayerOne = new JLabel("");
 			lblFundsPlayerOne.setBounds(10, 52, 46, 14);
@@ -81,7 +79,7 @@ public class GameMenu extends Menu {
 			panelGame.add(lblFundsPlayerTwo);
 		}
 			
-		//G
+		 
 	static void initializeScoreLabels() {
 			lblScorePlayerOne = new JLabel("0");
 			lblScorePlayerOne.setBounds(10, 77, 46, 14);
@@ -93,7 +91,7 @@ public class GameMenu extends Menu {
 			panelGame.add(lblScorePlayerTwo);
 		}
 		 
-		//G
+		 
 	static void initializeCurrentRoundLbl() {
 			
 			lblCurrentRound.setHorizontalAlignment(SwingConstants.CENTER);
@@ -101,12 +99,12 @@ public class GameMenu extends Menu {
 			panelGame.add(lblCurrentRound);
 		}
 		 
-		//G
+		 
 	static void initializeBetLabel() {
 			lblRoundBet.setBounds(143, 241, 95, 14);
 		}
 		
-		 //G
+		  
 	static void initializeRoundBetLbl() {
 			panelGame.add(lblRoundBet);
 			textRoundBet = new JTextField();
@@ -117,13 +115,12 @@ public class GameMenu extends Menu {
 			textRoundBet.setColumns(10);
 		}
 		
-		//G	
+		 	
 	static void initializeBtnQuit() {
 			btnQuit.setBounds(335, 237, 89, 23);
 			panelGame.add(btnQuit);
 		}
 		
-		//G
 	static void btnQuit() {
 			btnQuit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -132,13 +129,12 @@ public class GameMenu extends Menu {
 				}
 			});
 		}
-		 //G
+		  
 	static void initializeBtnContinue() {
 			btnContinue.setBounds(10, 237, 89, 23);
 			panelGame.add(btnContinue);
 		}
 		
-		 //G
 	static void btnContinue() {
 			btnContinue.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -154,13 +150,11 @@ public class GameMenu extends Menu {
 			});
 		}
 		
-		 //G
 	static void initializeRollBtn()	{
 			btnRoll.setBounds(10, 237, 89, 23);
 			panelGame.add(btnRoll);	
 				}
 			
-		//G
 	static void btnRoll() {
 			btnRoll.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -186,7 +180,7 @@ public class GameMenu extends Menu {
 			});
 		}
 
-			//C or G?
+			//C
 			 static void coinImage() {
 				lblDraw();
 				panelCoin.setBounds(157, 53, 135, 129);
@@ -198,8 +192,7 @@ public class GameMenu extends Menu {
 				coinLabel.setVisible(true);
 			}
 			 
-			 //C or G?
-			
+			 //C			
 			 static void lblDraw() {
 				panelGame.add(lblDraw);
 				lblDraw.setHorizontalAlignment(SwingConstants.CENTER);
@@ -208,7 +201,7 @@ public class GameMenu extends Menu {
 				lblDraw.setVisible(true);
 			}
 			
-			 //C or G?
+			 //C 
 			public static void coinOff() {
 				panelCoin.setVisible(false);	
 				lblDraw.setVisible(false);
