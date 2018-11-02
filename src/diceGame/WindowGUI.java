@@ -30,7 +30,7 @@ public class WindowGUI {
 	private static String[] diceNumbers = {"1", "2", "3", "4", "5"};
 	private static Integer[] roundNumbers = {1, 3, 5};
 	private JTextField textRoundBet;
-	private JPanel panelMain;
+	private JPanel panelMain = new JPanel();
 	JComboBox<String> comboBoxDice = new JComboBox<String>(diceNumbers);
 	JComboBox<Integer> comboBoxRounds = new JComboBox<Integer>(roundNumbers);
 	//DefaultComboBoxModel<String> comboModel = new DefaultComboBoxModel<String>(diceNumbers);
@@ -41,7 +41,7 @@ public class WindowGUI {
 	//JComboBox comboBoxRounds= new JComboBox(comboModel);
 	
 	//Game Panel Variables
-	static JPanel panelGame;
+	static JPanel panelGame = new JPanel();
 	static JPanel panelCoin = new JPanel();
 	JButton btnRoll = new JButton("Roll");
 	JButton btnQuit = new JButton("Quit");
@@ -58,8 +58,6 @@ public class WindowGUI {
 	static JLabel lblDiceGame = new JLabel("New Game");		
 	static JLabel lblRoundBet = new JLabel("Round Bet:");
 
-
-	
 	//Launches the App
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -83,6 +81,7 @@ public class WindowGUI {
 	private void initialize() {
 		this.initializeFrame();
 		this.initializeMainMenu();
+		this.initializeGameMenu();
 		this.initializeNameLabels();
 		this.initializeFundLabels();
 		this.initializeScoreLabels();
@@ -120,16 +119,22 @@ public class WindowGUI {
 		frame.getContentPane().setLayout(null);
 		
 	}
-	
-	public void initializeMainMenu() {
-		panelGame = new JPanel();
+	//M
+	 void initializeMainMenu() {
+			panelMain.setBounds(0, 0, 434, 271);
+			panelMain.setLayout(null);
+			panelMain.setVisible(true);
+			frame.getContentPane().add(panelMain);
+	 }
+	//G
+	 void initializeGameMenu() {
 		panelGame.setBounds(0, 0, 434, 271);
 		frame.getContentPane().add(panelGame);
 		panelGame.setLayout(null);
 		panelGame.setVisible(false);
 	}
-	
-	public void initializeNameLabels() {		
+	//G
+	 void initializeNameLabels() {		
 		lblNamePlayerOne = new JLabel("");
 		lblNamePlayerOne.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNamePlayerOne.setHorizontalAlignment(SwingConstants.LEFT);
@@ -142,8 +147,8 @@ public class WindowGUI {
 		lblNamePlayerTwo.setBounds(335, 27, 89, 14);
 		panelGame.add(lblNamePlayerTwo);
 	}
-	
-	public void initializeFundLabels() {		
+	//G
+	 void initializeFundLabels() {		
 		lblFundsPlayerOne = new JLabel("");
 		lblFundsPlayerOne.setBounds(10, 52, 46, 14);
 		panelGame.add(lblFundsPlayerOne);
@@ -154,8 +159,8 @@ public class WindowGUI {
 		panelGame.add(lblFundsPlayerTwo);
 	}
 		
-	
-	public void initializeScoreLabels() {
+	//G
+	 void initializeScoreLabels() {
 		lblScorePlayerOne = new JLabel("0");
 		lblScorePlayerOne.setBounds(10, 77, 46, 14);
 		panelGame.add(lblScorePlayerOne);
@@ -165,19 +170,22 @@ public class WindowGUI {
 		lblScorePlayerTwo.setBounds(378, 77, 36, 14);
 		panelGame.add(lblScorePlayerTwo);
 	}
-	
-	public void initializeCurrentRoundLbl() {
+	 
+	//G
+	 void initializeCurrentRoundLbl() {
 		
 		lblCurrentRound.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCurrentRound.setBounds(10, 0, 414, 25);
 		panelGame.add(lblCurrentRound);
 	}
-	
-	public void initializeBetLabel() {
+	 
+	//G
+	 void initializeBetLabel() {
 		lblRoundBet.setBounds(143, 241, 95, 14);
 	}
 	
-	public void initializeRoundBetLbl() {
+	 //G
+	void initializeRoundBetLbl() {
 		panelGame.add(lblRoundBet);
 		textRoundBet = new JTextField();
 		textRoundBet.setHorizontalAlignment(SwingConstants.CENTER);
@@ -186,13 +194,15 @@ public class WindowGUI {
 		panelGame.add(textRoundBet);
 		textRoundBet.setColumns(10);
 	}
-		
-	public void initializeBtnQuit() {
+	
+	//G	
+	void initializeBtnQuit() {
 		btnQuit.setBounds(335, 237, 89, 23);
 		panelGame.add(btnQuit);
 	}
 	
-	public void btnQuit() {
+	//G
+	 void btnQuit() {
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelGame.setVisible(false);
@@ -200,14 +210,15 @@ public class WindowGUI {
 			}
 		});
 	}
-		
-	public void initializeBtnContinue() {
+	 //G
+	 void initializeBtnContinue() {
 		btnContinue.setBounds(10, 237, 89, 23);
 		panelGame.add(btnContinue);
 		btnContinue.setVisible(false);
 	}
 	
-	public void btnContinue() {
+	 //G
+	 void btnContinue() {
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				coinOff();
@@ -222,17 +233,14 @@ public class WindowGUI {
 		});
 	}
 	
-	public void initializeRollBtn()	{
+	 //G
+	 void initializeRollBtn()	{
 		btnRoll.setBounds(10, 237, 89, 23);
-		panelGame.add(btnRoll);
-		panelMain = new JPanel();
-		panelMain.setBounds(0, 0, 434, 271);
-		frame.getContentPane().add(panelMain);
-		panelMain.setLayout(null);
-		panelMain.setVisible(true);
+		panelGame.add(btnRoll);	
 			}
 		
-	public void btnRoll() {
+	//G
+	 void btnRoll() {
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(playerOne.checkPlayerFunds() && playerTwo.checkPlayerFunds()) {
@@ -257,14 +265,16 @@ public class WindowGUI {
 		});
 	}
 		
-	public void initializeLblDiceGame() {
+	 //M
+	 void initializeLblDiceGame() {
 		lblDiceGame.setBounds(0, 11, 434, 25);
 		lblDiceGame.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDiceGame.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panelMain.add(lblDiceGame);
 	}
-		
-	public void initializePlayerNameLabels() {
+	 
+	//M
+	 void initializePlayerNameLabels() {
 		JLabel lblPlayerOneName = new JLabel("Player 1 Name:");
 		lblPlayerOneName.setBounds(97, 52, 99, 14);
 		panelMain.add(lblPlayerOneName);
@@ -273,35 +283,36 @@ public class WindowGUI {
 		lblPlayerTwoName.setBounds(97, 77, 109, 14);
 		panelMain.add(lblPlayerTwoName);
 	}
-
-	public void initializeNumberDiceLbl() {
+	 
+	 //M
+	 void initializeNumberDiceLbl() {
 	JLabel lblNumberOfDice = new JLabel("Number of Dice:");
 		lblNumberOfDice.setBounds(97, 121, 123, 14);
 		panelMain.add(lblNumberOfDice);
 	}
-	
-	public void initializeNumberRoundsLbl() {
-		
+	 
+	//M
+	 void initializeNumberRoundsLbl() {
 		JLabel lblNumberOfRounds = new JLabel("Number of Rounds:");
 		lblNumberOfRounds.setBounds(97, 146, 123, 14);
 		panelMain.add(lblNumberOfRounds);
 	}
 	
-	public void initializeStartMoneyLbl() {
+	 //M
+	 void initializeStartMoneyLbl() {
 		JLabel lblPlayerStartingMoney = new JLabel("Player starting Money:");
 		lblPlayerStartingMoney.setBounds(97, 185, 155, 14);
 		panelMain.add(lblPlayerStartingMoney);
 	}
 	
-	public void initializeNameTxts() {
-		
+	 //M
+	 void initializeNameTxts() {
 		txtPlayerOneName = new JTextField();
 		txtPlayerOneName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPlayerOneName.setText("Player 1");
 		txtPlayerOneName.setBounds(242, 47, 112, 20);
 		panelMain.add(txtPlayerOneName);
 		txtPlayerOneName.setColumns(10);
-		
 		txtPlayerTwoName = new JTextField();
 		txtPlayerTwoName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPlayerTwoName.setText("Player 2");
@@ -310,22 +321,22 @@ public class WindowGUI {
 		txtPlayerTwoName.setColumns(10);
 	}
 	
-	public void initializeComboBoxDice() {
-		
+	 //M
+	 void initializeComboBoxDice() {
 		comboBoxDice.setSelectedIndex(1);
 		comboBoxDice.setBounds(242, 118, 40, 20);
 		panelMain.add(comboBoxDice);
 	}
 	
-	public void initializeComboBoxRounds() {
-		
+	 //M
+	 void initializeComboBoxRounds() {
 		comboBoxRounds.setSelectedIndex(1);
 		comboBoxRounds.setBounds(242, 143, 40, 20);
 		panelMain.add(comboBoxRounds);
 	}
 	
-	public void initializeStartingMoneyTxt() {
-		
+	 //M
+	 void initializeStartingMoneyTxt() {
 		txtStartingFunds = new JTextField();
 		txtStartingFunds.setHorizontalAlignment(SwingConstants.CENTER);
 		txtStartingFunds.setText("100");
@@ -334,12 +345,13 @@ public class WindowGUI {
 		txtStartingFunds.setColumns(10);
 	}
 	
-	public void initializebtnExit() {
+	 //M
+	 void initializebtnExit() {
 		btnExit.setBounds(230, 239, 99, 22);
 		panelMain.add(btnExit);
 	}
-		
-	public void btnExit() {
+		//<
+	 void btnExit() {
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -347,12 +359,14 @@ public class WindowGUI {
 		});
 	}
 	
-	public void initializeStartBtn() {
+	 //M
+	 void initializeStartBtn() {
 		btnStart.setBounds(123, 239, 102, 22);
 		panelMain.add(btnStart);
 	}
-	
-	public void btnStart() {
+	 
+	//M
+	void btnStart() {
 		btnStart.addActionListener(new ActionListener() {
 			//START BUTTON This will update the players names, money and create a new game based on the combo box selections
 			public void actionPerformed(ActionEvent e) {
@@ -370,9 +384,9 @@ public class WindowGUI {
 		
 	}
 	
-
+//M
 	//Updates Labels in Game Panel to match players values
-	public void refreshGameLabels() {
+	void refreshGameLabels() {
 		lblNamePlayerOne.setText(playerOne.getName());
 		lblNamePlayerTwo.setText(playerTwo.getName());
 		lblFundsPlayerOne.setText("$"+playerOne.getMoney());
@@ -381,7 +395,8 @@ public class WindowGUI {
 		lblScorePlayerTwo.setText(""+playerTwo.getScore());
 	}
 		
-	public static void coinImage() {
+	//C or G?
+	 static void coinImage() {
 		lblDraw();
 		panelCoin.setBounds(157, 53, 135, 129);
 		WindowGUI.frame.getContentPane().add(panelCoin);
@@ -391,8 +406,10 @@ public class WindowGUI {
 		panelCoin.setVisible(true);
 		coinLabel.setVisible(true);
 	}
+	 
+	 //C or G?
 	
-	public static void lblDraw() {
+	 static void lblDraw() {
 		panelGame.add(lblDraw);
 		lblDraw.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDraw.setBounds(10, 0, 414, 25);
@@ -400,6 +417,7 @@ public class WindowGUI {
 		lblDraw.setVisible(true);
 	}
 	
+	 //C or G?
 	public static void coinOff() {
 		panelCoin.setVisible(false);	
 		lblDraw.setVisible(false);
