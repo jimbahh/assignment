@@ -1,10 +1,7 @@
 package diceGame;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-
-
 
 public class WindowGUI {
 	
@@ -14,7 +11,6 @@ public class WindowGUI {
 	public static WindowGUI getInstance() {
 	        return gui;
 	}
-
 	
 	//Launches the App
 	public static void main(String[] args) {
@@ -38,37 +34,8 @@ public class WindowGUI {
 	
 	private void initialize() {
 		Frame.initializeFrame();
-		MainMenu.initializeMainMenu();
-		MainMenu.initializeLblDiceGame();
-		MainMenu.initializePlayerNameLabels();
-		MainMenu.initializeNumberDiceLbl();
-		MainMenu.initializeNumberRoundsLbl();
-		MainMenu.initializeStartMoneyLbl();
-		MainMenu.initializeNameTxts();
-		MainMenu.initializeComboBoxDice();
-		MainMenu.initializeComboBoxRounds();
-		MainMenu.initializeStartingMoneyTxt();
-		MainMenu.initializeStartBtn();
-		MainMenu.initializebtnExit();
-		MainMenu.btnStart();
-		MainMenu.btnExit();
-		
-		GameMenu.initializeGameMenu();
-		GameMenu.initializeNameLabels();
-		GameMenu.initializeFundLabels();
-		GameMenu.initializeScoreLabels();
-		GameMenu.initializeCurrentRoundLbl();
-		GameMenu.initializeBetLabel();
-		GameMenu.initializeBtnQuit();
-		GameMenu.initializeBtnContinue();
-		GameMenu.initializeRollBtn();
-		GameMenu.initializeRoundBetLbl();
-		GameMenu.btnRoll();
-		GameMenu.btnQuit();
-		GameMenu.btnContinue();
-		
-		
-		
+		MainMenu.initializeAllMain();
+		GameMenu.initializeAllGame();		
 	}
 	
 }

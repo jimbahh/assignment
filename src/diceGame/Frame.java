@@ -15,7 +15,6 @@ public class Frame {
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
 	}
 
 	static void frameVisible() {

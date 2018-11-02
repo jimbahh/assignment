@@ -3,7 +3,6 @@ package diceGame;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -31,6 +30,23 @@ public class MainMenu extends Menu {
 	//@SuppressWarnings({ "unchecked", "rawtypes" })
 	//JComboBox comboBoxRounds= new JComboBox(comboModel);
 
+	
+	static void initializeAllMain() {
+		initializeMainMenu();
+		initializeLblDiceGame();
+		initializePlayerNameLabels();
+		initializeNumberDiceLbl();
+		initializeNumberRoundsLbl();
+		initializeStartMoneyLbl();
+		initializeNameTxts();
+		initializeComboBoxDice();
+		initializeComboBoxRounds();
+		initializeStartingMoneyTxt();
+		initializeStartBtn();
+		initializebtnExit();
+		btnStart();
+		btnExit();	
+	}
 	
 	//M
 	 static void initializeMainMenu() {
@@ -156,7 +172,7 @@ public class MainMenu extends Menu {
 			//START BUTTON This will update the players names, money and create a new game based on the combo box selections
 			public void actionPerformed(ActionEvent e) {
 				GameMenu.gameVisible();
-				panelMain.setVisible(false);
+				menuInvisible();
 				playerOne.name = txtPlayerOneName.getText();
 				playerOne.money = Integer.parseInt(txtStartingFunds.getText());
 				playerTwo.name = txtPlayerTwoName.getText();
@@ -169,7 +185,7 @@ public class MainMenu extends Menu {
 		
 	}
 	
-//M
+	//M
 	//Updates Labels in Game Panel to match players values
 	static void refreshGameLabels() {
 		lblNamePlayerOne.setText(playerOne.getName());

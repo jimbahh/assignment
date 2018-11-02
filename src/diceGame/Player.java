@@ -62,8 +62,6 @@ public abstract class Player {
 		return roundScore;
 	}
 	
-
-	
 	//use this to empty thisRoundRolls AND roundscore after each round
 	public void clearRoundScore () {
 		thisRoundRolls.clear();

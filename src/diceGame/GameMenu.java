@@ -3,7 +3,6 @@ package diceGame;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,6 +21,22 @@ public class GameMenu extends Menu {
 	static JLabel lblDraw = new JLabel("Draw! Flipping a coin!");
 	static JLabel lblRoundBet = new JLabel("Round Bet:");
 	public static JTextField textRoundBet;
+	
+	static void initializeAllGame() {
+		initializeGameMenu();
+		initializeNameLabels();
+		initializeFundLabels();
+		initializeScoreLabels();
+		initializeCurrentRoundLbl();
+		initializeBetLabel();
+		initializeBtnQuit();
+		initializeBtnContinue();
+		initializeRollBtn();
+		initializeRoundBetLbl();
+		btnRoll();
+		btnQuit();
+		btnContinue();
+	}
 
 	static void gameVisible() {
 			panelGame.setVisible(true);
@@ -37,7 +52,7 @@ public class GameMenu extends Menu {
 			panelGame.setBounds(0, 0, 434, 271);
 			frame.getContentPane().add(panelGame);
 			panelGame.setLayout(null);
-			gameVisible();
+			gameInvisible();
 			}
 		 
 		//G
@@ -112,7 +127,7 @@ public class GameMenu extends Menu {
 	static void btnQuit() {
 			btnQuit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					panelGame.setVisible(false);
+					gameInvisible();
 					MainMenu.menuVisible();
 				}
 			});
@@ -121,7 +136,6 @@ public class GameMenu extends Menu {
 	static void initializeBtnContinue() {
 			btnContinue.setBounds(10, 237, 89, 23);
 			panelGame.add(btnContinue);
-			btnContinue.setVisible(false);
 		}
 		
 		 //G
