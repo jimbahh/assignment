@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.RepeatedTest;
 
-//import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 //import org.junit.jupiter.api.RepeatedTest;
 
@@ -16,7 +16,7 @@ public class Test {
 	Game testGame = new Game();
 	
 	//tests that each dice gives a value of 1-6, does so 10 times
-	/*	@org.junit.Test
+	@org.junit.Test
 	@RepeatedTest(1)
 	public void sixSidedDiceTest() {
 			int diceroll1 = playerOne.diceRoll();
@@ -33,12 +33,12 @@ public class Test {
 		testGame.newRound();
 		assertFalse(playerOne.thisRoundRolls.isEmpty());
 		assertFalse(playerTwo.thisRoundRolls.isEmpty());
-		playerOne.clearRolls();
-		playerTwo.clearRolls();
+		playerOne.clearRoundScore();
+		playerTwo.clearRoundScore();
 		assertTrue(playerOne.thisRoundRolls.isEmpty());
 		assertTrue(playerTwo.thisRoundRolls.isEmpty());
 	}
-	*/
+	
 	@org.junit.Test
 	@RepeatedTest(5)
 	public void roundScoreTest() {
