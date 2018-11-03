@@ -222,10 +222,10 @@ public class GameMenu extends Menu {
 				lblCurrentRound.setVisible(true);
 			}
 			static void initializeDice() {
-				panelDicePlayerOne.setBounds(10, 100, 160, 50);
+				panelDicePlayerOne.setBounds(50, 100, 120, 75);
 				panelDicePlayerOne.setLayout(new FlowLayout());
 				
-				panelDicePlayerTwo.setBounds(220, 100, 160, 50);
+				panelDicePlayerTwo.setBounds(265, 100, 120, 75);
 				panelDicePlayerTwo.setLayout(new FlowLayout());				
 			}
 			
@@ -236,36 +236,35 @@ public class GameMenu extends Menu {
 				ImageIcon diceRoll4 = new ImageIcon(GameMenu.class.getResource("diceRoll_4.png"));
 				ImageIcon diceRoll5 = new ImageIcon(GameMenu.class.getResource("diceRoll_5.png"));
 				ImageIcon diceRoll6 = new ImageIcon(GameMenu.class.getResource("diceRoll_6.png"));
-								
-				JLabel roll1 = new JLabel(diceRoll1);
-				JLabel roll2 = new JLabel(diceRoll2);
-				JLabel roll3 = new JLabel(diceRoll3);
-				JLabel roll4 = new JLabel(diceRoll4);
-				JLabel roll5 = new JLabel(diceRoll5);
-				JLabel roll6 = new JLabel(diceRoll6);
-				
+												
 				panelDicePlayerOne.removeAll();
 				panelDicePlayerTwo.removeAll();
 				
 				for(int i = 0; i < playerOne.thisRoundRolls.size(); i++) {
 					int rollP1 = playerOne.thisRoundRolls.get(i);
 					switch (rollP1) {
-						case 1: panelDicePlayerOne.add(roll1);
+						case 1: JLabel roll1 = new JLabel(diceRoll1);
+								panelDicePlayerOne.add(roll1);
 								roll1.setVisible(true);
 								break;
-						case 2: panelDicePlayerOne.add(roll2);
+						case 2: JLabel roll2 = new JLabel(diceRoll2);
+								panelDicePlayerOne.add(roll2);
 								roll2.setVisible(true);
 								break;
-						case 3: panelDicePlayerOne.add(roll3);
+						case 3: JLabel roll3 = new JLabel(diceRoll3);
+								panelDicePlayerOne.add(roll3);
 								roll3.setVisible(true);
 								break;
-						case 4: panelDicePlayerOne.add(roll4);
+						case 4: JLabel roll4 = new JLabel(diceRoll4);
+								panelDicePlayerOne.add(roll4);
 								roll4.setVisible(true);
 								break;
-						case 5: panelDicePlayerOne.add(roll5);
+						case 5: JLabel roll5 = new JLabel(diceRoll5);
+								panelDicePlayerOne.add(roll5);
 								roll5.setVisible(true);
 								break;
-						case 6: panelDicePlayerOne.add(roll6);
+						case 6: JLabel roll6 = new JLabel(diceRoll6);
+								panelDicePlayerOne.add(roll6);
 								roll6.setVisible(true);
 								break;							
 					}
@@ -274,22 +273,28 @@ public class GameMenu extends Menu {
 				for(int i = 0; i < playerTwo.thisRoundRolls.size(); i++) {
 					int rollP2 = playerTwo.thisRoundRolls.get(i);
 					switch (rollP2) {
-						case 1: panelDicePlayerTwo.add(roll1);
+						case 1: JLabel roll1 = new JLabel(diceRoll1);
+								panelDicePlayerTwo.add(roll1);
 								roll1.setVisible(true);
 								break;
-						case 2: panelDicePlayerTwo.add(roll2);
+						case 2: JLabel roll2 = new JLabel(diceRoll2);
+								panelDicePlayerTwo.add(roll2);
 								roll2.setVisible(true);
 								break;
-						case 3: panelDicePlayerTwo.add(roll3);
+						case 3: JLabel roll3 = new JLabel(diceRoll3);
+								panelDicePlayerTwo.add(roll3);
 								roll3.setVisible(true);
 								break;
-						case 4: panelDicePlayerTwo.add(roll4);
+						case 4: JLabel roll4 = new JLabel(diceRoll4);
+								panelDicePlayerTwo.add(roll4);
 								roll4.setVisible(true);
 								break;
-						case 5: panelDicePlayerTwo.add(roll5);
+						case 5: JLabel roll5 = new JLabel(diceRoll5);
+								panelDicePlayerTwo.add(roll5);
 								roll5.setVisible(true);
 								break;
-						case 6: panelDicePlayerTwo.add(roll6);
+						case 6: JLabel roll6 = new JLabel(diceRoll6);
+								panelDicePlayerTwo.add(roll6);
 								roll6.setVisible(true);
 								break;							
 					}
