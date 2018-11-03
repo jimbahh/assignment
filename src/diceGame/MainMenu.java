@@ -46,16 +46,16 @@ public class MainMenu extends Menu {
 		btnExit();	
 	}
 	
-	 private void initializeMainMenu() {
-			panelMain.setBounds(0, 0, 434, 271);
-			panelMain.setLayout(null);
-			panelMain.setVisible(true);
-			frame.add(panelMain);
-	 }
+	private void initializeMainMenu() {
+		panelMain.setBounds(0, 0, 434, 271);
+		panelMain.setLayout(null);
+		panelMain.setVisible(true);
+		frame.add(panelMain);
+	}
 	 
 	public void menuVisible(boolean value) {
-			panelMain.setVisible(value);
-		}
+		panelMain.setVisible(value);
+	}
 		
 	private void initializeLblDiceGame() {
 		lblDiceGame.setBounds(0, 11, 434, 25);
@@ -153,7 +153,6 @@ public class MainMenu extends Menu {
 	 
 	private void btnStart() {
 		btnStart.addActionListener(new ActionListener() {
-			//START BUTTON This will update the players names, money and create a new game based on the combo box selections
 			public void actionPerformed(ActionEvent e) {
 				WindowGUI.gameMenu.gameVisible(true);
 				menuVisible(false);
@@ -165,11 +164,6 @@ public class MainMenu extends Menu {
 				WindowGUI.gameMenu.refreshGameLabels();
 				WindowGUI.gameMenu.rollButtonSetVisible(true);
 			}
-		});
-		
-	}
-	
-	 
-	//Updates Labels in Game Panel to match players values
-	
+		});		
+	}	
 }

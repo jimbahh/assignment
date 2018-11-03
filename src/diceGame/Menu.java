@@ -15,5 +15,4 @@ public abstract class Menu {
 	static JLabel lblScorePlayerOne;
 	static JLabel lblScorePlayerTwo;
 	static JLabel lblDiceGame = new JLabel("New Game");		
-	
 }

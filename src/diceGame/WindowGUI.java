@@ -31,8 +31,5 @@ public class WindowGUI {
 		Frame.initializeFrame();
 		mainMenu = new MainMenu();
 		gameMenu = new GameMenu();		
-	}
-	
+	}	
 }
-		
-	
