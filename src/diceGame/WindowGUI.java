@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 public class WindowGUI {
 	
 	static JFrame frame = Frame.getInstance();
+	static GameMenu gameMenu;
+	static MainMenu mainMenu;
 	
 	//Launches the App
 	public static void main(String[] args) {
@@ -27,8 +29,8 @@ public class WindowGUI {
 	
 	private void initialize() {
 		Frame.initializeFrame();
-		MainMenu.initializeAllMain();
-		GameMenu.initializeAllGame();		
+		mainMenu = new MainMenu();
+		gameMenu = new GameMenu();		
 	}
 	
 }

@@ -51,8 +51,8 @@ public class Test {
 		System.out.println("Clearing round scores....");
 	playerOne.clearRoundScore();
 	playerTwo.clearRoundScore();
-	assertEquals(0, playerOne.randomNumbers);
-	assertEquals(0, playerTwo.randomNumbers);
+	assertEquals(0, playerOne.getRandomNumbers());
+	assertEquals(0, playerTwo.getRandomNumbers());
 	}
 }
 

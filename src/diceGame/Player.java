@@ -9,7 +9,7 @@ public abstract class Player {
 	int money = 0;
 	int roundScore = 0;
 	ArrayList<Integer> thisRoundRolls = new ArrayList<Integer>();
-	int randomNumbers;
+	private int randomNumbers;
 	
 	public Player() {
 	}
@@ -71,5 +71,9 @@ public abstract class Player {
 			return false;
 		}
 		return true;
+	}
+	
+	public int getRandomNumbers() {
+		return randomNumbers;
 	}
 } 

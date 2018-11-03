@@ -49,7 +49,7 @@ public class Game {
 	
 	public Player getWinner() {
 			if (playerOne.getScore() == playerTwo.getScore() && playerOne.getScore() > 0) {
-			GameMenu.coinImage();
+			WindowGUI.gameMenu.coinImage();
 			
 			if (coinFlip()) {
 				return playerOne;

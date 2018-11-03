@@ -13,19 +13,24 @@ import javax.swing.SwingConstants;
 
 public class GameMenu extends Menu {
 	//Game Panel Variables
-	static JPanel panelGame = new JPanel();
-	static JPanel panelCoin = new JPanel();
-	static JPanel panelDicePlayerOne = new JPanel();
-	static JPanel panelDicePlayerTwo = new JPanel();
-	static JButton btnRoll = new JButton("Roll");
-	static JButton btnQuit = new JButton("Quit");
-	static JButton btnContinue = new JButton("Continue");
-	static JLabel lblCurrentRound = new JLabel();
-	static JLabel lblDraw = new JLabel("Draw! Flipping a coin!");
-	static JLabel lblRoundBet = new JLabel("Round Bet:");
-	public static JTextField textRoundBet;
+	private JPanel panelGame;
+	private JPanel panelCoin = new JPanel();
+	private JPanel panelDicePlayerOne = new JPanel();
+	private JPanel panelDicePlayerTwo = new JPanel();
+	private JButton btnRoll = new JButton("Roll");
+	private JButton btnQuit = new JButton("Quit");
+	private JButton btnContinue = new JButton("Continue");
+	private JLabel lblCurrentRound = new JLabel();
+	private JLabel lblDraw = new JLabel("Draw! Flipping a coin!");
+	private JLabel lblRoundBet = new JLabel("Round Bet:");
+	private JTextField textRoundBet;
 	
-	static void initializeAllGame() {
+	public GameMenu() {
+		panelGame  = new JPanel();
+		this.initializeAllGame();
+	}
+	
+	public void initializeAllGame() {
 		initializeGameMenu();
 		initializeNameLabels();
 		initializeFundLabels();
@@ -43,23 +48,18 @@ public class GameMenu extends Menu {
 		
 	}
 
-	static void gameVisible() {
-			panelGame.setVisible(true);
+	public void gameVisible(boolean value) {
+			panelGame.setVisible(value);
 		}
-		
-	static void gameInvisible() {
-			panelGame.setVisible(false);
-		}
-	
-	 
-	static void initializeGameMenu() {
+			 
+	public void initializeGameMenu() {
 			panelGame.setBounds(0, 0, 434, 271);
 			frame.getContentPane().add(panelGame);
 			panelGame.setLayout(null);
-			gameInvisible();
+			gameVisible(false);
 			}
 		  
-	static void initializeNameLabels() {		
+	public void initializeNameLabels() {		
 			lblNamePlayerOne = new JLabel("");
 			lblNamePlayerOne.setFont(new Font("Tahoma", Font.BOLD, 11));
 			lblNamePlayerOne.setHorizontalAlignment(SwingConstants.LEFT);
@@ -73,7 +73,7 @@ public class GameMenu extends Menu {
 			panelGame.add(lblNamePlayerTwo);
 		}
 		 
-	static void initializeFundLabels() {		
+	public void initializeFundLabels() {		
 			lblFundsPlayerOne = new JLabel("");
 			lblFundsPlayerOne.setBounds(10, 52, 46, 14);
 			panelGame.add(lblFundsPlayerOne);
@@ -85,7 +85,7 @@ public class GameMenu extends Menu {
 		}
 			
 		 
-	static void initializeScoreLabels() {
+	public void initializeScoreLabels() {
 			lblScorePlayerOne = new JLabel("0");
 			lblScorePlayerOne.setBounds(10, 77, 46, 14);
 			panelGame.add(lblScorePlayerOne);
@@ -97,7 +97,7 @@ public class GameMenu extends Menu {
 		}
 		 
 		 
-	static void initializeCurrentRoundLbl() {
+	public void initializeCurrentRoundLbl() {
 			
 			lblCurrentRound.setHorizontalAlignment(SwingConstants.CENTER);
 			lblCurrentRound.setBounds(10, 0, 414, 25);
@@ -105,12 +105,12 @@ public class GameMenu extends Menu {
 		}
 		 
 		 
-	static void initializeBetLabel() {
+	public void initializeBetLabel() {
 			lblRoundBet.setBounds(143, 241, 95, 14);
 		}
 		
 		  
-	static void initializeRoundBetLbl() {
+	public void initializeRoundBetLbl() {
 			panelGame.add(lblRoundBet);
 			textRoundBet = new JTextField();
 			textRoundBet.setHorizontalAlignment(SwingConstants.CENTER);
@@ -121,26 +121,26 @@ public class GameMenu extends Menu {
 		}
 		
 		 	
-	static void initializeBtnQuit() {
+	public void initializeBtnQuit() {
 			btnQuit.setBounds(335, 237, 89, 23);
 			panelGame.add(btnQuit);
 		}
 		
-	static void btnQuit() {
+	public void btnQuit() {
 			btnQuit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					gameInvisible();
-					MainMenu.menuVisible();
+					gameVisible(false);
+					WindowGUI.mainMenu.menuVisible(true);
 				}
 			});
 		}
 		  
-	static void initializeBtnContinue() {
+	public void initializeBtnContinue() {
 			btnContinue.setBounds(10, 237, 89, 23);
 			panelGame.add(btnContinue);
 		}
 		
-	static void btnContinue() {
+	public void btnContinue() {
 			btnContinue.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					coinOff();
@@ -148,19 +148,19 @@ public class GameMenu extends Menu {
 					playerTwo.resetScore();
 					game.setCurrentRound(1);
 					//btnRoll.setVisible(true);
-					MainMenu.refreshGameLabels();
+					refreshGameLabels();
 					btnContinue.setVisible(false);	
 					System.out.println("Button CONTINUE");
 				}
 			});
 		}
 		
-	static void initializeRollBtn()	{
+	public void initializeRollBtn()	{
 			btnRoll.setBounds(10, 237, 89, 23);
 			panelGame.add(btnRoll);	
 				}
 			
-	static void btnRoll() {
+	public void btnRoll() {
 			btnRoll.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -182,7 +182,7 @@ public class GameMenu extends Menu {
 							playerOne.clearRoundScore();
 							playerTwo.clearRoundScore();
 						}
-						MainMenu.refreshGameLabels();
+						refreshGameLabels();
 					}
 					else {
 						btnRoll.setVisible(false);
@@ -195,7 +195,7 @@ public class GameMenu extends Menu {
 		}
 
 			//C
-			 static void coinImage() {
+			 public void coinImage() {
 				lblDraw();
 				panelCoin.setBounds(157, 53, 135, 129);
 				panelGame.add(panelCoin);
@@ -207,7 +207,7 @@ public class GameMenu extends Menu {
 			}
 			 
 			 //C			
-			 static void lblDraw() {
+			 public void lblDraw() {
 				panelGame.add(lblDraw);
 				lblDraw.setHorizontalAlignment(SwingConstants.CENTER);
 				lblDraw.setBounds(10, 0, 414, 25);
@@ -216,12 +216,12 @@ public class GameMenu extends Menu {
 			}
 			
 			 //C 
-			public static void coinOff() {
+			public void coinOff() {
 				panelCoin.setVisible(false);	
 				lblDraw.setVisible(false);
 				lblCurrentRound.setVisible(true);
 			}
-			static void initializeDice() {
+			public void initializeDice() {
 				panelDicePlayerOne.setBounds(50, 100, 120, 75);
 				panelDicePlayerOne.setLayout(new FlowLayout());
 				
@@ -229,7 +229,7 @@ public class GameMenu extends Menu {
 				panelDicePlayerTwo.setLayout(new FlowLayout());				
 			}
 			
-			static void renderDice() {
+			public void renderDice() {
 				ImageIcon diceRoll1 = new ImageIcon(GameMenu.class.getResource("diceRoll_1.png"));
 				ImageIcon diceRoll2 = new ImageIcon(GameMenu.class.getResource("diceRoll_2.png"));
 				ImageIcon diceRoll3 = new ImageIcon(GameMenu.class.getResource("diceRoll_3.png"));
@@ -306,5 +306,19 @@ public class GameMenu extends Menu {
 				panelGame.add(panelDicePlayerTwo);
 				panelDicePlayerTwo.setVisible(true);
 		}
+			
+	public void rollButtonSetVisible(boolean value) {
+		this.btnRoll.setVisible(value);
+	}
+	
+	public void refreshGameLabels() {
+		lblNamePlayerOne.setText(playerOne.getName());
+		lblNamePlayerTwo.setText(playerTwo.getName());
+		lblFundsPlayerOne.setText("$"+playerOne.getMoney());
+		lblFundsPlayerTwo.setText("$"+playerTwo.getMoney());
+		lblScorePlayerOne.setText(""+playerOne.getScore());
+		lblScorePlayerTwo.setText(""+playerTwo.getScore());
+	}
+
 }
 
